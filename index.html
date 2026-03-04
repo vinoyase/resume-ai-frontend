@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Mini Prompt Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 30px;
+            white-space: pre-wrap;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mini Prompt Resume</h1>
+
+    <textarea id="inputText" placeholder="Please paste your resume content...."></textarea>
+    <br />
+    <button onclick="generateResume()">Generate optimized version</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function generateResume() {
+            const input = document.getElementById("inputText").value;
+            const resultDiv = document.getElementById("result");
+
+            if (!input.trim()) {
+                alert("Please enter your content first.");
+                return;
+            }
+
+            resultDiv.innerText = "Under optimization...";
+
+            const response = await fetch("https://resume-ai-saas-1.onrender.com/generate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text: input })
+            });
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "AI_Resume.docx";
+            a.click();
+
+            resultDiv.innerText = "Resume has been generated and downloaded. ✅";
+        }
+
+
+    </script>
+
+</body>
+
+</html>
