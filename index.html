@@ -79,6 +79,17 @@
                 body: JSON.stringify({ text: input })
             });
 
+            if (response.status === 403) {
+                const data = await response.json();
+                alert(data.message);
+                return;
+            }
+
+            if (!response.ok) {
+                alert("Server error.");
+                return;
+            }
+
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
 
