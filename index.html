@@ -46,6 +46,30 @@
             padding: 15px;
             border-radius: 6px;
         }
+
+        .error-message {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #ffeaea;
+            border: 1px solid #ffb3b3;
+            color: #d8000c;
+        }
+
+        .error-message button {
+            margin-top: 15px;
+            padding: 8px 16px;
+            font-size: 14px;
+            background: #d8000c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .error-message button:hover {
+            opacity: 0.9;
+        }
     </style>
 </head>
 
@@ -102,11 +126,15 @@
                     return;
                 }
                 if (response.status === 403) {
-                    document.getElementById("result").innerText =
-                        "!!Free attempts have been used up. Please upgrade your membership.";
+                    resultDiv.className = "error-message";
+                    resultDiv.innerHTML = `
+                        <strong>Free attempts have been used up.</strong><br/>
+                        Please upgrade to continue generating resumes.
+                        <br/>
+                        <button onclick="goToUpgrade()">Upgrade Now</button>
+    `                ;
                     return;
                 }
-
                 if (!response.ok) {
                     alert("Server error.");
                     return;
