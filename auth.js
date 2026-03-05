@@ -1,10 +1,13 @@
 (function () {
   const token = localStorage.getItem("token");
-  const publicPages = ["login.html", "register.html", "index.html"];
-
+  const publicPages = ["login.html", "register.html"];
   const currentPage = window.location.pathname.split("/").pop();
 
   if (!token && !publicPages.includes(currentPage)) {
     window.location.href = "login.html";
+  }
+
+  if (token && currentPage === "login.html") {
+    window.location.href = "index.html";
   }
 })();
