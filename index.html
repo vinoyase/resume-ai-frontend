@@ -140,6 +140,7 @@
                     return;
                 }
 
+
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
 
@@ -155,6 +156,11 @@
                 console.error(error);
             }
         }
+
+        function goToUpgrade() {
+            window.location.href = "upgrade.html";
+        }
+
     </script>
 
 </body>
