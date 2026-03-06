@@ -160,8 +160,8 @@
                 if (response.status === 403) {
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
-                        <strong>Free attempts have been used up.</strong><br/>
-                        Please upgrade to continue generating resumes.
+                        <strong style="color:#007bff;">Free attempts have been used up.</strong><br/>
+                        <span style="color:#007bff;">Please upgrade to continue generating resumes.</span>
                         <br/>
                         <button onclick="goToUpgrade()">Upgrade Now</button>
                     `;
