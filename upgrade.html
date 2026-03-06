@@ -18,20 +18,21 @@
     </button>
 
     <script>
+
         async function pay() {
 
-            fetch("https://resume-ai-saas-4.onrender.com/create-checkout-session", {
+            const res = await fetch("https://resume-ai-saas-4.onrender.com/create-checkout-session", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 }
-            })
+            });
 
             const data = await res.json();
 
             window.location.href = data.url;
-
         }
+    </script>
     </script>
 
 </body>
