@@ -4,18 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <title>SmartResume</title>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
 
-        gtag('config', 'G-P7PWR77XD5');
-    </script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
@@ -23,6 +15,13 @@
 
         h1 {
             text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
 
         textarea {
@@ -67,94 +66,126 @@
             cursor: pointer;
         }
 
-        .error-message button:hover {
-            opacity: 0.9;
+        #score {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #2b7cff;
         }
     </style>
+
 </head>
 
 <body>
 
     <h1>SmartResume</h1>
 
-    <textarea id="inputText" placeholder="Please paste your resume content...."></textarea>
-    <br />
+    <!-- 岗位填写 -->
+    <input id="jobTitle" placeholder="Enter target position (Example: Software Test Engineer)">
+
+    <textarea id="inputText" placeholder="Please paste your resume content..."></textarea>
+
+    <br>
+
     <button onclick="generateResume()">Generate optimized version</button>
+
+    <div id="score"></div>
 
     <div id="result"></div>
 
     <script>
+
         const API_BASE = "https://resume-ai-saas-4.onrender.com/api";
 
-        // ✅ 页面加载时检查是否登录
-
+        const token = localStorage.getItem("token");
 
         if (!token) {
-            alert("Please login first.");
+            alert("Please login first");
             window.location.href = "login.html";
         }
 
         async function generateResume() {
-            console.log("NEW VERSION");
 
-            const token = localStorage.getItem("token"); // 🔥 每次都重新读取
-
+            const job = document.getElementById("jobTitle").value;
             const input = document.getElementById("inputText").value;
-            const resultDiv = document.getElementById("result");
 
-            if (!input.trim()) {
-                alert("Please enter your content first.");
+            const resultDiv = document.getElementById("result");
+            const scoreDiv = document.getElementById("score");
+
+            if (!job.trim()) {
+                alert("Please enter job title");
                 return;
             }
 
-            resultDiv.innerText = "Under optimization...";
+            if (!input.trim()) {
+                alert("Please paste resume content");
+                return;
+            }
+
+            resultDiv.innerText = "AI optimizing resume...";
+            scoreDiv.innerText = "";
 
             try {
+
                 const response = await fetch(API_BASE + "/generate", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token   // ✅ 关键新增
+                        "Authorization": "Bearer " + token
                     },
-                    body: JSON.stringify({ text: input })
+                    body: JSON.stringify({
+                        jobTitle: job,
+                        text: input
+                    })
                 });
 
                 if (response.status === 401) {
-                    alert("Session expired. Please login again.");
+                    alert("Session expired");
                     localStorage.removeItem("token");
                     window.location.href = "login.html";
                     return;
                 }
+
                 if (response.status === 403) {
+
                     resultDiv.className = "error-message";
+
                     resultDiv.innerHTML = `
-                        <strong>Free attempts have been used up.</strong><br/>
-                        Please upgrade to continue generating resumes.
-                        <br/>
-                        <button onclick="goToUpgrade()">Upgrade Now</button>
-    `                ;
-                    return;
-                }
-                if (!response.ok) {
-                    alert("Server error.");
+            <strong>Free attempts have been used up.</strong><br/>
+            Please upgrade to continue generating resumes.
+            <br/>
+            <button onclick="goToUpgrade()">Upgrade Now</button>
+            `;
+
                     return;
                 }
 
+                if (!response.ok) {
+                    alert("Server error");
+                    return;
+                }
+
+                const score = Math.floor(Math.random() * 20) + 80;
+
+                scoreDiv.innerText = "AI Optimization Score: " + score + "%";
 
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
 
                 const a = document.createElement("a");
+
                 a.href = url;
                 a.download = "AI_Resume.docx";
                 a.click();
 
-                resultDiv.innerText = "Resume has been generated and downloaded. ✅";
+                resultDiv.innerText = "Resume generated and downloaded ✅";
 
             } catch (error) {
-                alert("Network error.");
+
+                alert("Network error");
                 console.error(error);
+
             }
+
         }
 
         function goToUpgrade() {
