@@ -109,6 +109,12 @@
             window.location.href = "login.html";
         }
 
+        function logout() {
+            localStorage.removeItem("token");
+            alert("Logged out");
+            window.location.href = "login.html";
+        }
+
         async function generateResume() {
             console.log("NEW VERSION");
 
