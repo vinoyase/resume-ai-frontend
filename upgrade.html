@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Upgrade Plan</title>
 </head>
+
 <body style="font-family: Arial; text-align:center; margin-top:100px;">
-    <h1>Upgrade to Pro</h1>
-    <p>Unlimited resume generation.</p>
-    <h2>$7.9 – Lifetime Access</h2>
-    <button onclick="alert('Stripe coming soon...')">
-        Pay Now
-    </button>
+
+<h1>Upgrade to Pro</h1>
+
+<p>Unlimited resume generation.</p>
+
+<h2>$7.9 – Lifetime Access</h2>
+
+<button onclick="pay()">
+    Pay Now
+</button>
+
+<script>
+async function pay() {
+
+    const res = await fetch("/create-checkout-session", {
+        method: "POST"
+    });
+
+    const data = await res.json();
+
+    window.location.href = data.url;
+
+}
+</script>
+
 </body>
 </html>
