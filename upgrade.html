@@ -7,29 +7,33 @@
 
 <body style="font-family: Arial; text-align:center; margin-top:100px;">
 
-<h1>Upgrade to Pro</h1>
+    <h1>Upgrade to Pro</h1>
 
-<p>Unlimited resume generation.</p>
+    <p>Unlimited resume generation.</p>
 
-<h2>$7.9 – Lifetime Access</h2>
+    <h2>$7.9 – Lifetime Access</h2>
 
-<button onclick="pay()">
-    Pay Now
-</button>
+    <button onclick="pay()">
+        Pay Now
+    </button>
 
-<script>
-async function pay() {
+    <script>
+        async function pay() {
 
-    const res = await fetch("https://resume-ai-saas-4.onrender.com/create-checkout-session", {
-        method: "POST"
-    });
+            fetch("https://resume-ai-saas-4.onrender.com/create-checkout-session", {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                }
+            })
 
-    const data = await res.json();
+            const data = await res.json();
 
-    window.location.href = data.url;
+            window.location.href = data.url;
 
-}
-</script>
+        }
+    </script>
 
 </body>
+
 </html>
