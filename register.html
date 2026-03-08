@@ -10,7 +10,7 @@
 
 <input id="email" placeholder="Email"><br><br>
 
-<button onclick="sendCode()">Send Verification Code</button><br><br>
+<button id="sendCodeBtn" onclick="sendCode()">Send Verification Code</button><br><br>
 
 <input id="code" placeholder="Verification Code"><br><br>
 
@@ -21,64 +21,120 @@
 <p>Already have an account? <a href="login.html">Login</a></p>
 
 <script>
-
 const API_BASE = "https://resume-ai-saas-4.onrender.com";
 
-/* 发送验证码 */
-async function sendCode() {
+let countdown = 0;
+let timer = null;
 
-    const email = document.getElementById("email").value;
+function startCountdown() {
+    const btn = document.getElementById("sendCodeBtn");
+
+    countdown = 60;
+    btn.disabled = true;
+    btn.innerText = `Resend in ${countdown}s`;
+
+    timer = setInterval(() => {
+        countdown--;
+
+        if (countdown <= 0) {
+            clearInterval(timer);
+            btn.disabled = false;
+            btn.innerText = "Send Verification Code";
+            return;
+        }
+
+        btn.innerText = `Resend in ${countdown}s`;
+    }, 1000);
+}
+
+async function sendCode() {
+    const email = document.getElementById("email").value.trim();
+    const btn = document.getElementById("sendCodeBtn");
 
     if (!email) {
         alert("Please enter email first");
         return;
     }
 
-    const res = await fetch(API_BASE + "/api/send-code", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: email
-        })
-    });
+    btn.disabled = true;
+    btn.innerText = "Sending...";
 
-    const data = await res.json();
+    try {
+        const res = await fetch(API_BASE + "/api/send-code", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email
+            })
+        });
 
-    if (data.success) {
-        alert("Verification code sent to your email");
-    } else {
-        alert(data.message || "Failed to send code");
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+            alert("Verification code sent! Please check your email.");
+            document.getElementById("code").focus();
+            startCountdown();
+        } else {
+            alert(data.message || "Failed to send code");
+            btn.disabled = false;
+            btn.innerText = "Send Verification Code";
+        }
+
+    } catch (error) {
+        alert("Network error, please try again");
+        btn.disabled = false;
+        btn.innerText = "Send Verification Code";
     }
 }
 
-
-/* 注册 */
 async function register() {
+    const email = document.getElementById("email").value.trim();
+    const code = document.getElementById("code").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    const res = await fetch(API_BASE + "/api/register", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value,
-            code: document.getElementById("code").value
-        })
-    });
+    if (!email) {
+        alert("Please enter email");
+        return;
+    }
 
-    const data = await res.json();
+    if (!code) {
+        alert("Please enter verification code");
+        return;
+    }
 
-    if (data.success) {
-        alert("Registration successful! Please login.");
-        window.location.href = "login.html";
-    } else {
-        alert(data.message || "Registration failed");
+    if (!password) {
+        alert("Please enter password");
+        return;
+    }
+
+    try {
+        const res = await fetch(API_BASE + "/api/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                code: code
+            })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+            alert("Registration successful! Please login.");
+            window.location.href = "login.html";
+        } else {
+            alert(data.message || "Registration failed");
+        }
+
+    } catch (error) {
+        alert("Network error, please try again");
     }
 }
-
 </script>
 
 </body>
