@@ -4,109 +4,219 @@
 <head>
     <meta charset="UTF-8" />
     <title>SmartResume</title>
-    <!-- Google Analytics -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-P7PWR77XD5');
     </script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 860px;
             margin: 40px auto;
             padding: 20px;
+            color: #222;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         h1 {
             text-align: center;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            font-size: 14px;
+            font-size: 42px;
             margin-bottom: 10px;
         }
 
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-top: 16px;
+        }
+
+        .field-label:first-child {
+            margin-top: 0;
+        }
+
+        input,
         textarea {
             width: 100%;
-            height: 200px;
-            padding: 10px;
+            padding: 12px;
+            font-size: 15px;
+            margin-bottom: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 220px;
+            resize: vertical;
+        }
+
+        .helper-text {
             font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
         }
 
         button {
-            margin-top: 15px;
-            padding: 10px 20px;
+            margin-top: 18px;
+            padding: 12px 22px;
             font-size: 16px;
             cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            background: #111;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.92;
+        }
+
+        .secondary-btn {
+            background: #f3f3f3;
+            color: #111;
+            border: 1px solid #ddd;
         }
 
         #result {
-            margin-top: 30px;
+            margin-top: 24px;
             white-space: pre-wrap;
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 6px;
+            background: #f7f7f7;
+            padding: 16px;
+            border-radius: 10px;
+            min-height: 24px;
         }
 
         .error-message {
-            margin-top: 30px;
+            margin-top: 24px;
             padding: 20px;
-            border-radius: 8px;
-            background: #ffeaea;
-            border: 1px solid #ffb3b3;
-            color: #d8000c;
+            border-radius: 12px;
+            background: #eef6ff;
+            border: 1px solid #cfe2ff;
+            color: #0b57d0;
         }
 
         .error-message button {
-            margin-top: 15px;
-            padding: 8px 16px;
-            font-size: 14px;
-            background: #d8000c;
+            margin-top: 16px;
+            padding: 10px 18px;
+            font-size: 15px;
+            background: #0b57d0;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
         .error-message button:hover {
-            opacity: 0.9;
+            opacity: 0.92;
+        }
+
+        .free-note {
+            margin-top: 14px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .auth-note {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .auth-note a {
+            color: #0b57d0;
+            text-decoration: none;
+        }
+
+        .auth-note a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 
 <body>
 
-    <div style="position:absolute;right:40px;top:20px">
+    <div class="top-bar">
         <span id="userStatus"></span>
-        <button onclick="logout()">Logout</button>
+        <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Logout</button>
     </div>
 
-    <h1>SmartResume</h1>
+    <h1>Create an ATS-optimized resume in 30 seconds</h1>
+    <p class="subtitle">
+        Paste your resume and let AI improve it with stronger bullet points and recruiter-friendly keywords.
+    </p>
 
-    <!-- 新增：岗位填写 -->
-    <input id="jobTitle" placeholder="Please enter the target job position (Example: Software Test Engineer)">
+    <div class="form-card">
+        <label class="field-label" for="jobTitle">Target Job Title</label>
+        <input id="jobTitle" placeholder="Example: Software Test Engineer">
 
-    <textarea id="inputText" placeholder="Please paste your resume content...."></textarea>
+        <div class="helper-text">Add the job title you are applying for to get better ATS keywords.</div>
 
-    <br />
-    <button onclick="generateResume()">Generate optimized version</button>
+        <label class="field-label" for="inputText">Paste Your Resume</label>
+        <textarea id="inputText" placeholder="Paste your resume content here..."></textarea>
 
-    <div id="result"></div>
+        <button onclick="generateResume()">Generate Resume</button>
+
+        <div class="free-note">
+            Free users can generate 2 resumes. Upgrade to unlock unlimited optimization and download.
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <div class="auth-note">
+        <span id="authMessage"></span>
+    </div>
 
     <script>
         const API_BASE = "https://resume-ai-saas-4.onrender.com/api";
-
         const token = localStorage.getItem("token");
 
-        if (!token) {
-            alert("Please login first.");
-            window.location.href = "login.html";
+        const logoutBtn = document.getElementById("logoutBtn");
+        const userStatus = document.getElementById("userStatus");
+        const authMessage = document.getElementById("authMessage");
+
+        if (token) {
+            userStatus.innerText = "Logged in";
+            logoutBtn.classList.remove("hidden");
+            authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
+        } else {
+            userStatus.innerText = "Guest mode";
+            authMessage.innerHTML = `Already have an account? <a href="login.html">Login</a> | <a href="register.html">Register</a>`;
         }
 
         function logout() {
@@ -116,34 +226,54 @@
         }
 
         async function generateResume() {
-            console.log("NEW VERSION");
 
             const token = localStorage.getItem("token");
-
-            const jobTitle = document.getElementById("jobTitle").value;   // 新增
-            const input = document.getElementById("inputText").value;
-
+            const jobTitle = document.getElementById("jobTitle").value.trim();
+            const input = document.getElementById("inputText").value.trim();
             const resultDiv = document.getElementById("result");
 
-            if (!jobTitle.trim()) {
-                alert("Please enter job title.");
+            resultDiv.className = "";
+
+            if (!jobTitle) {
+                alert("Please enter the target job title.");
                 return;
             }
 
-            if (!input.trim()) {
-                alert("Please enter your content first.");
+            if (!input) {
+                alert("Please paste your resume first.");
                 return;
             }
 
-            resultDiv.innerText = "Under optimization...";
+            // ⭐ 游客限制：只允许一次
+            if (!token) {
+                const used = localStorage.getItem("guest_generate_used");
+                if (used === "1") {
+                    resultDiv.className = "error-message";
+                    resultDiv.innerHTML = `
+                <strong>Your free resume is ready.</strong><br/>
+                Create an account to continue generating resumes.
+                <br/>
+                <button onclick="window.location.href='login.html'">Login / Register</button>
+            `;
+                    return;
+                }
+            }
+
+            resultDiv.innerText = "Generating your ATS-optimized resume...";
 
             try {
+
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+
+                if (token) {
+                    headers["Authorization"] = "Bearer " + token;
+                }
+
                 const response = await fetch(API_BASE + "/generate", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token
-                    },
+                    headers,
                     body: JSON.stringify({
                         text: input,
                         jobTitle: jobTitle
@@ -151,25 +281,33 @@
                 });
 
                 if (response.status === 401) {
-                    alert("Session expired. Please login again.");
-                    localStorage.removeItem("token");
-                    window.location.href = "login.html";
+                    resultDiv.className = "error-message";
+                    resultDiv.innerHTML = `
+                <strong>Your resume is ready.</strong><br/>
+                Login to continue and download your optimized resume.
+                <br/>
+                <button onclick="window.location.href='login.html'">Login to Continue</button>
+            `;
                     return;
                 }
 
                 if (response.status === 403) {
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
-                        <strong style="color:#007bff;">Free attempts have been used up.</strong><br/>
-                        <span style="color:#007bff;">Please upgrade to continue generating resumes.</span>
-                        <br/>
-                        <button onclick="goToUpgrade()">Upgrade Now</button>
-                    `;
+                <strong>Your resume is ready.</strong><br/>
+                Unlock download and unlimited resume optimization for $9.9.
+                <br/>
+                <button onclick="goToUpgrade()">Unlock Resume</button>
+            `;
                     return;
                 }
 
                 if (!response.ok) {
-                    alert("Server error.");
+                    resultDiv.className = "error-message";
+                    resultDiv.innerHTML = `
+                <strong>Something went wrong.</strong><br/>
+                Please try again in a moment.
+            `;
                     return;
                 }
 
@@ -181,18 +319,30 @@
                 a.download = "AI_Resume.docx";
                 a.click();
 
-                resultDiv.innerText = "Resume has been generated and downloaded. ✅";
+                // ⭐ 标记游客已经使用过一次
+                if (!token) {
+                    localStorage.setItem("guest_generate_used", "1");
+                }
+
+                resultDiv.innerText = "Your ATS-optimized resume has been generated and downloaded. ✅";
 
             } catch (error) {
-                alert("Network error.");
+
+                resultDiv.className = "error-message";
+                resultDiv.innerHTML = `
+            <strong>Network error.</strong><br/>
+            Please check your connection and try again.
+        `;
+
                 console.error(error);
+
             }
+
         }
 
         function goToUpgrade() {
             window.location.href = "upgrade.html";
         }
-
     </script>
 
 </body>
