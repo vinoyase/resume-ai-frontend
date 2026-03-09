@@ -181,7 +181,6 @@
 <body>
 
     <div class="top-bar">
-        <span id="userStatus" class="status-badge"></span>
         <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Logout</button>
     </div>
 
@@ -217,11 +216,9 @@
         const token = localStorage.getItem("token");
 
         const logoutBtn = document.getElementById("logoutBtn");
-        const userStatus = document.getElementById("userStatus");
         const authMessage = document.getElementById("authMessage");
 
         if (token) {
-            userStatus.innerText = "Logged in";
             logoutBtn.classList.remove("hidden");
             authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
         } else {
