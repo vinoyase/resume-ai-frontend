@@ -165,13 +165,23 @@
         .hidden {
             display: none;
         }
+
+        .status-badge {
+            display: inline-block;
+            padding: 10px 14px;
+            background: #f3f3f3;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="top-bar">
-        <span id="userStatus"></span>
+        <span id="userStatus" class="status-badge"></span>
         <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Logout</button>
     </div>
 
