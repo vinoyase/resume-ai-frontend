@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>SmartResume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
@@ -19,7 +20,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Inter", sans-serif;
             max-width: 920px;
             margin: 0 auto;
             padding: 28px 20px 48px;
@@ -32,23 +33,29 @@
             top: 12px;
             right: 16px;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         h1 {
             text-align: center;
-            font-size: 48px;
+            font-size: 40px;
             line-height: 1.15;
             margin: 18px 0 14px;
             color: #111827;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
         }
 
         .subtitle {
             text-align: center;
-            font-size: 18px;
+            font-size: 17px;
             color: #64748b;
-            max-width: 720px;
-            margin: 0 auto 34px auto;
-            line-height: 1.7;
+            max-width: 820px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
         }
 
         .form-card {
@@ -114,28 +121,37 @@
             cursor: pointer;
             border-radius: 12px;
             border: none;
-            background: #2563eb;
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
             color: white;
-            font-weight: 600;
+            font-weight: 500;
             transition: 0.2s ease;
         }
 
         button:hover {
-            background: #1d4ed8;
+            background: linear-gradient(135deg, #6d28d9, #7e22ce);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
         }
 
-        .secondary-btn {
+        button.secondary-btn {
+            margin-top: 0;
             background: #ffffff;
-            border: 1px solid #d9e2ec;
-            color: #334155;
-            padding: 6px 14px;
-            font-size: 13px;
+            border: 1px solid #e5e7eb;
+            color: #374151;
             border-radius: 8px;
-            cursor: pointer;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: none;
+            transform: none;
         }
 
-        .secondary-btn:hover {
-            background: #f8fafc;
+        button.secondary-btn:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+            color: #111827;
+            box-shadow: none;
+            transform: none;
         }
 
         #result {
@@ -215,13 +231,19 @@
         }
 
         .pro-badge {
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: white;
+            background: #f5f3ff;
+            color: #6d28d9;
+            padding: 4px 10px;
+            border-radius: 999px;
             font-size: 12px;
             font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-right: 10px;
+        }
+
+        .gold {
+            background: linear-gradient(135deg, #FFD700, #FFC300, #FFB800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
 
         @media (max-width: 768px) {
@@ -261,21 +283,28 @@
         <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Logout</button>
     </div>
 
-    <h1>Create an ATS-optimized resume in 30 seconds</h1>
+    <h1>
+        Create an ATS-optimized resume in
+        <span class="gold">just 10 seconds</span>
+    </h1>
     <p class="subtitle">
-        Paste your resume and let AI improve it with stronger bullet points and recruiter-friendly keywords.
+        Paste your resume and get an ATS-optimized version instantly.
     </p>
 
     <div class="form-card">
         <label class="field-label" for="jobTitle">Target Job Title</label>
         <input id="jobTitle" placeholder="Example: Software Test Engineer">
 
-        <div class="helper-text">Add the job title you are applying for to get better ATS keywords.</div>
+        <div class="helper-text">
+            <div class="helper-text">
+                Add a job title for better ATS keywords.
+            </div>
+        </div>
 
         <label class="field-label" for="inputText">Paste Your Resume</label>
         <textarea id="inputText" placeholder="Paste your resume content here..."></textarea>
 
-        <button onclick="generateResume()">Generate Resume</button>
+        <button onclick="generateResume()">⚡ Improve My Resume</button>
 
         <div class="free-note">
             Free users can generate 2 resumes. Upgrade to unlock unlimited optimization and download.
