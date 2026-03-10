@@ -3,305 +3,128 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - SmartResume AI</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <title>Login</title>
 
+    <style>
         body {
             margin: 0;
-            font-family: Inter, Arial, sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #3b82f6;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: center;
-            padding: 24px;
+            height: 100vh;
         }
 
-        .page {
-            width: 100%;
-            max-width: 980px;
-            display: grid;
-            grid-template-columns: 1fr 440px;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
-        }
-
-        .left {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #ffffff;
-            padding: 56px 48px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .brand {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            margin-bottom: 28px;
-            opacity: 0.92;
-        }
-
-        .left h1 {
-            margin: 0 0 16px;
-            font-size: 40px;
-            line-height: 1.15;
-            font-weight: 800;
-        }
-
-        .left p {
-            margin: 0 0 28px;
-            font-size: 16px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.78);
-            max-width: 420px;
-        }
-
-        .feature-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .feature {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .right {
-            padding: 40px 34px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-        }
-
-        .card {
-            width: 100%;
-            max-width: 360px;
-        }
-
-        .eyebrow {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 700;
-            color: #2563eb;
-            background: #eff6ff;
-            padding: 6px 10px;
-            border-radius: 999px;
-            margin-bottom: 16px;
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            width: 320px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         h2 {
-            margin: 0 0 8px;
-            font-size: 30px;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        .subtitle {
-            margin: 0 0 24px;
-            color: #64748b;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #334155;
+            margin-top: 0;
+            text-align: center;
         }
 
         input {
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.2s ease;
-            background: #ffffff;
-            color: #0f172a;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
         }
 
-        input::placeholder {
-            color: #94a3b8;
-        }
-
-        input:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-        }
-
-        .primary-btn {
+        button {
             width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: #2563eb;
+            color: white;
             border: none;
-            border-radius: 12px;
-            background: #0f172a;
-            color: #ffffff;
+            border-radius: 6px;
             font-size: 15px;
-            font-weight: 700;
-            padding: 14px 16px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 8px;
         }
 
-        .primary-btn:hover {
-            background: #1e293b;
+        button:hover {
+            background: #1d4ed8;
         }
 
-        .footer-text {
-            margin-top: 18px;
+        p {
             text-align: center;
-            font-size: 13px;
-            color: #64748b;
-            line-height: 1.6;
+            font-size: 14px;
         }
 
-        .footer-text a {
+        a {
             color: #2563eb;
             text-decoration: none;
-            font-weight: 600;
         }
 
         .message {
-            display: none;
-            margin-bottom: 16px;
-            padding: 12px 14px;
-            border-radius: 12px;
+            text-align: center;
             font-size: 14px;
-            line-height: 1.5;
+            margin-top: 10px;
         }
 
-        .message.success {
-            display: block;
-            background: #ecfdf5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
+        .error {
+            color: red;
         }
 
-        .message.error {
-            display: block;
-            background: #fef2f2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-        }
-
-        @media (max-width: 880px) {
-            .page {
-                grid-template-columns: 1fr;
-            }
-
-            .left {
-                display: none;
-            }
-
-            .right {
-                padding: 28px 20px;
-            }
-
-            .card {
-                max-width: 100%;
-            }
+        .success {
+            color: green;
         }
     </style>
 </head>
 
 <body>
-    <div class="page">
-        <div class="left">
-            <div class="brand">SmartResume AI</div>
-            <h1>Welcome back</h1>
-            <p>
-                Sign in to continue building polished, ATS-friendly resumes with AI. Fast, clean, and designed for
-                modern job seekers.
-            </p>
 
-            <div class="feature-list">
-                <div class="feature">✓ Professional AI-generated content</div>
-                <div class="feature">✓ Clean resume structure</div>
-                <div class="feature">✓ Fast editing and export</div>
-            </div>
-        </div>
+    <div class="box">
 
-        <div class="right">
-            <div class="card">
-                <div class="eyebrow">Sign in</div>
-                <h2>Welcome back</h2>
-                <p class="subtitle">Sign in to access your account and continue.</p>
+        <h2>Login</h2>
 
-                <div id="message" class="message"></div>
+        <input id="email" placeholder="Email">
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" placeholder="you@example.com">
-                </div>
+        <input id="password" type="password" placeholder="Password">
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" placeholder="Enter your password">
-                </div>
+        <button onclick="login()">Login</button>
 
-                <button class="primary-btn" onclick="login()">Sign in</button>
+        <div id="msg" class="message"></div>
 
-                <p class="footer-text">
-                    Don’t have an account?
-                    <a href="register.html">Create account</a>
-                </p>
-            </div>
-        </div>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+
     </div>
 
     <script>
+
         const API_BASE = "https://resume-ai-saas-4.onrender.com";
 
-        function showMessage(text, type) {
-            const box = document.getElementById("message");
-            box.className = "message " + type;
-            box.innerText = text;
-            box.style.display = "block";
-        }
-
-        function clearMessage() {
-            const box = document.getElementById("message");
-            box.className = "message";
-            box.innerText = "";
-            box.style.display = "none";
+        function showMsg(text, type) {
+            const msg = document.getElementById("msg");
+            msg.innerText = text;
+            msg.className = "message " + type;
         }
 
         async function login() {
-            clearMessage();
 
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value.trim();
 
             if (!email) {
-                showMessage("Please enter your email.", "error");
+                showMsg("Enter email", "error");
                 return;
             }
 
             if (!password) {
-                showMessage("Please enter your password.", "error");
+                showMsg("Enter password", "error");
                 return;
             }
 
             try {
+
                 const res = await fetch(API_BASE + "/api/login", {
                     method: "POST",
                     headers: {
@@ -315,22 +138,24 @@
 
                 const data = await res.json();
 
-                if (res.ok && data.token) {
+                if (res.ok) {
                     localStorage.setItem("token", data.token);
-                    showMessage("Login successful. Redirecting...", "success");
+                    showMsg("Login successful", "success");
 
                     setTimeout(() => {
                         window.location.href = "index.html";
                     }, 800);
+
                 } else {
-                    showMessage(data.message || "Login failed.", "error");
+                    showMsg(data.message || "Login failed", "error");
                 }
 
-            } catch (error) {
-                showMessage("Network error. Please try again.", "error");
-                console.error(error);
+            } catch (err) {
+                showMsg("Network error", "error");
             }
+
         }
+
     </script>
 
 </body>
