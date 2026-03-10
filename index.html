@@ -214,6 +214,16 @@
             color: #334155;
         }
 
+        .pro-badge {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 18px 16px 36px;
@@ -247,6 +257,7 @@
 <body>
 
     <div class="top-bar">
+        <span id="proBadge" class="pro-badge hidden">PRO</span>
         <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Logout</button>
     </div>
 
@@ -296,6 +307,36 @@
             alert("Logged out");
             window.location.href = "login.html";
         }
+
+        async function checkUser() {
+
+            const token = localStorage.getItem("token");
+
+            if (!token) return;
+
+            try {
+
+                const res = await fetch(API_BASE + "/api/me", {
+                    headers: {
+                        Authorization: "Bearer " + token
+                    }
+                });
+
+                const data = await res.json();
+
+                if (data.is_paid) {
+
+                    document.getElementById("proBadge").style.display = "inline-block";
+
+                }
+
+            } catch (err) {
+                console.log(err);
+            }
+
+        }
+
+        checkUser();
 
         async function generateResume() {
 
