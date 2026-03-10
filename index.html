@@ -257,7 +257,7 @@
 <body>
 
     <div class="top-bar">
-        <span id="proBadge" class="pro-badge hidden">PRO</span>
+        <span id="proBadge" class="pro-badge hidden">👑 PRO</span>
         <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Logout</button>
     </div>
 
@@ -294,14 +294,21 @@
 
         const logoutBtn = document.getElementById("logoutBtn");
         const authMessage = document.getElementById("authMessage");
+        const proBadge = document.getElementById("proBadge");
 
         if (token) {
-            logoutBtn.classList.remove("hidden");
-            authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
-        } else {
-            authMessage.innerHTML = `Already have an account? <a href="login.html">Login</a> | <a href="register.html">Register</a>`;
-        }
 
+            logoutBtn.classList.remove("hidden");
+
+            authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
+
+            checkUser();   // ⭐ 加这一行
+
+        } else {
+
+            authMessage.innerHTML = `Already have an account? <a href="login.html">Login</a> | <a href="register.html">Register</a>`;
+
+        }
         function logout() {
             localStorage.removeItem("token");
             alert("Logged out");
@@ -316,7 +323,7 @@
 
             try {
 
-                const res = await fetch(API_BASE + "/api/me", {
+                const res = await fetch(API_BASE + "/me", {
                     headers: {
                         Authorization: "Bearer " + token
                     }
