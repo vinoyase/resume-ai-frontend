@@ -1,70 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <title>Register</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #3b82f6;
+            background: #eef4ff;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 24px;
         }
 
         .box {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            width: 320px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 420px;
+            background: linear-gradient(135deg, #c7e9ff, #e6f6ff);
+            padding: 32px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
         }
 
         h2 {
-            margin-top: 0;
+            margin: 0 0 22px;
             text-align: center;
+            font-size: 30px;
+            color: #111827;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            height: 46px;
+            padding: 0 14px;
+            margin-top: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
             font-size: 14px;
+            background: #ffffff;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #93c5fd;
+            box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.18);
+        }
+
+        .emailRow {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            margin-top: 12px;
+        }
+
+        .emailRow input {
+            flex: 1;
+            margin-top: 0;
         }
 
         button {
             width: 100%;
-            padding: 10px;
+            height: 46px;
             margin-top: 12px;
             background: #2563eb;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 14px;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         button:hover {
-            background: #1d4ed8;
+            background: #3b7bf0;
         }
 
         .codeBtn {
-            background: #64748b;
+            width: 118px;
+            height: 46px;
+            margin-top: 0;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            color: #111827;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            border-radius: 8px;
+            flex-shrink: 0;
         }
 
         .codeBtn:hover {
-            background: #475569;
+            background: #f9fafb;
+        }
+
+        .codeBtn:disabled {
+            color: #6b7280;
+            background: #f8fafc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+            min-height: 20px;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        .success {
+            color: #16a34a;
         }
 
         p {
             text-align: center;
             font-size: 14px;
+            margin-top: 18px;
+            margin-bottom: 0;
+            color: #6b7280;
         }
 
         a {
@@ -72,18 +138,24 @@
             text-decoration: none;
         }
 
-        .message {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
+        a:hover {
+            text-decoration: underline;
         }
 
-        .error {
-            color: red;
-        }
+        @media (max-width: 480px) {
+            .box {
+                padding: 24px;
+            }
 
-        .success {
-            color: green;
+            .emailRow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .codeBtn {
+                width: 100%;
+                margin-top: 0;
+            }
         }
     </style>
 
@@ -93,21 +165,22 @@
 
     <div class="box">
 
-        <h2>Register</h2>
+        <h2>Create account</h2>
 
-        <input id="email" placeholder="Email">
+        <div class="emailRow">
+            <input id="email" placeholder="Email">
+            <button class="codeBtn" id="sendCodeBtn" onclick="sendCode()">Send code</button>
+        </div>
 
-        <button class="codeBtn" id="sendCodeBtn" onclick="sendCode()">Send Code</button>
-
-        <input id="code" placeholder="Verification Code">
+        <input id="code" placeholder="Verification code">
 
         <input id="password" type="password" placeholder="Password">
 
-        <button onclick="register()">Register</button>
+        <button onclick="register()">Create account</button>
 
         <div id="msg" class="message"></div>
 
-        <p>Already have an account? <a href="login.html">Login</a></p>
+        <p>Already have an account? <a href="login.html">Sign in</a></p>
 
     </div>
 
@@ -142,7 +215,7 @@
                     clearInterval(timer);
 
                     btn.disabled = false;
-                    btn.innerText = "Send Code";
+                    btn.innerText = "Send code";
 
                     return;
                 }
@@ -191,7 +264,7 @@
                     showMsg(data.message || "Failed", "error");
 
                     btn.disabled = false;
-                    btn.innerText = "Send Code";
+                    btn.innerText = "Send code";
                 }
 
             } catch (error) {
@@ -199,7 +272,7 @@
                 showMsg("Network error", "error");
 
                 btn.disabled = false;
-                btn.innerText = "Send Code";
+                btn.innerText = "Send code";
             }
         }
 
