@@ -2,182 +2,234 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in - SmartResume AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-1: #eef4ff;
+            --bg-2: #f8fbff;
+            --card: rgba(255, 255, 255, 0.78);
+            --card-border: rgba(255, 255, 255, 0.7);
+            --text: #0f172a;
+            --muted: #64748b;
+            --primary: #2563eb;
+            --input-border: #dbe4f0;
+            --input-bg: rgba(255, 255, 255, 0.92);
+            --success: #16a34a;
+            --error: #dc2626;
+            --shadow: 0 20px 50px rgba(37, 99, 235, 0.12);
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #eef4ff;
             min-height: 100vh;
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(96, 165, 250, 0.22), transparent 32%),
+                radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 28%),
+                linear-gradient(180deg, var(--bg-1), var(--bg-2));
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 24px;
         }
 
-        .page {
+        .auth-wrap {
             width: 100%;
-            max-width: 920px;
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            background: #ffffff;
-            border-radius: 22px;
-            overflow: hidden;
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+            max-width: 460px;
         }
 
-        .left {
-            background: linear-gradient(135deg, #7dd3fc, #bae6fd);
-            color: white;
-            padding: 56px 48px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .box {
+            width: 100%;
+            background: var(--card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 34px 32px 28px;
         }
 
         .brand {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 24px;
-        }
-
-        .left h1 {
-            margin: 0 0 14px;
-            font-size: 34px;
-            line-height: 1.2;
-        }
-
-        .left p {
-            margin: 0;
-            font-size: 16px;
-            line-height: 1.7;
-            opacity: 0.95;
-        }
-
-        .right {
-            padding: 42px 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: white;
+            gap: 10px;
+            margin-bottom: 18px;
         }
 
-        .card {
-            width: 100%;
-            max-width: 320px;
+        .brand-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background:linear-gradient(135deg,#7c3aed,#a855f7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22);
+        }
+
+        .brand-name {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
         }
 
         h2 {
-            margin: 0 0 8px;
+            margin: 0;
+            text-align: center;
             font-size: 30px;
-            color: #0f172a;
+            line-height: 1.15;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
-        .sub {
-            margin: 0 0 24px;
-            color: #64748b;
+        .subtitle {
+            margin: 10px 0 24px;
+            text-align: center;
             font-size: 14px;
+            line-height: 1.6;
+            color: var(--muted);
         }
 
-        .form-group {
-            margin-bottom: 14px;
-        }
-
-        label {
+        .label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #0f172a;
+            font-size: 13px;
             font-weight: 600;
+            margin: 0 0 8px;
+            color: #334155;
+        }
+
+        .field {
+            margin-top: 14px;
         }
 
         input {
             width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #cbd5e1;
+            height: 50px;
+            padding: 0 15px;
+            border: 1px solid var(--input-border);
             border-radius: 12px;
             font-size: 14px;
+            font-family: "Inter", sans-serif;
+            background: var(--input-bg);
+            color: var(--text);
             outline: none;
-            background: #f8fbff;
+            transition: all 0.2s ease;
+        }
+
+        input::placeholder {
+            color: #94a3b8;
         }
 
         input:focus {
-            border-color: #60a5fa;
+            border-color: rgba(37, 99, 235, 0.45);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
             background: #ffffff;
         }
 
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 8px;
-            border: none;
-            border-radius: 12px;
-            background: #2563eb;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
+        .extra-row {
+            margin-top: 10px;
+            text-align: right;
         }
 
-        button:hover {
-            background: #1d4ed8;
+        .extra-row a {
+            font-size: 13px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .extra-row a:hover {
+            text-decoration: underline;
+        }
+
+        .primaryBtn {
+            width: 100%;
+            height: 52px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 12px 26px rgba(37, 99, 235, 0.22);
+        }
+
+        .primaryBtn:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            box-shadow: 0 16px 28px rgba(37, 99, 235, 0.24);
         }
 
         .message {
-            margin-top: 18px;
-            font-size: 16px;
             text-align: center;
-            display: none;
+            margin-top: 14px;
+            font-size: 14px;
+            min-height: 22px;
+            font-weight: 500;
         }
 
         .error {
-            display: block;
-            color: #991b1b;
-            background: #fee2e2;
-            padding: 10px 12px;
-            border-radius: 10px;
+            color: var(--error);
         }
 
         .success {
-            display: block;
-            color: #065f46;
-            background: #d1fae5;
-            padding: 14px 18px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 16px;
+            color: var(--success);
         }
 
-        .footer {
-            margin-top: 18px;
+        .bottom {
             text-align: center;
             font-size: 14px;
-            color: #64748b;
+            margin-top: 20px;
+            margin-bottom: 0;
+            color: var(--muted);
         }
 
-        .footer a {
-            color: #2563eb;
+        a {
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
         }
 
-        @media (max-width: 860px) {
-            .page {
-                grid-template-columns: 1fr;
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .trust {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
             }
 
-            .left {
-                padding: 36px 28px;
+            .box {
+                padding: 28px 20px 24px;
+                border-radius: 20px;
             }
 
-            .right {
-                padding: 30px 22px;
+            h2 {
+                font-size: 26px;
             }
         }
     </style>
@@ -185,36 +237,40 @@
 
 <body>
 
-    <div class="page">
-        <div class="left">
-            <div class="brand">SmartResume AI</div>
-            <h1>Build your resume with AI</h1>
-            <p>In seconds.</p>
-        </div>
+    <div class="auth-wrap">
+        <div class="box">
 
-        <div class="right">
-            <div class="card">
-                <h2>Welcome</h2>
-                <p class="sub">Sign in to continue.</p>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input id="email" placeholder="Email">
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input id="password" type="password" placeholder="Password">
-                </div>
-
-                <button onclick="login()">Sign in</button>
-
-                <div id="msg" class="message"></div>
-
-                <div class="footer">
-                    Don’t have an account? <a href="register.html">Create account</a>
-                </div>
+            <div class="brand">
+                <div class="brand-badge">AI</div>
+                <div class="brand-name">SmartResume AI</div>
             </div>
+
+            <h2>Welcome back</h2>
+            <div class="subtitle">
+                Sign in to continue building polished, professional resumes with AI.
+            </div>
+
+            <div class="field">
+                <label class="label" for="email">Email</label>
+                <input id="email" type="email" placeholder="you@example.com" />
+            </div>
+
+            <div class="field">
+                <label class="label" for="password">Password</label>
+                <input id="password" type="password" placeholder="Enter your password" />
+            </div>
+
+            <div class="extra-row">
+                <a href="forgot-password.html">Forgot password?</a>
+            </div>
+
+            <button class="primaryBtn" onclick="login()">Sign in</button>
+
+            <div id="msg" class="message"></div>
+
+            <p class="bottom">Don’t have an account? <a href="register.html">Create account</a></p>
+            <div class="trust">Secure login • Fast access • Resume creation in seconds</div>
+
         </div>
     </div>
 
@@ -232,12 +288,12 @@
             const password = document.getElementById("password").value.trim();
 
             if (!email) {
-                showMsg("Enter email", "error");
+                showMsg("Enter your email", "error");
                 return;
             }
 
             if (!password) {
-                showMsg("Enter password", "error");
+                showMsg("Enter your password", "error");
                 return;
             }
 
@@ -257,7 +313,7 @@
 
                 if (res.ok) {
                     localStorage.setItem("token", data.token);
-                    showMsg("✓ Login successful", "success");
+                    showMsg("Login successful", "success");
 
                     setTimeout(() => {
                         window.location.href = "index.html";
