@@ -14,50 +14,58 @@
     </script>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            max-width: 860px;
-            margin: 40px auto;
-            padding: 20px;
-            color: #222;
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 28px 20px 48px;
+            color: #1f2937;
+            background: #f6f9fc;
         }
 
         .top-bar {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            position: fixed;
+            top: 12px;
+            right: 16px;
+            z-index: 1000;
         }
 
         h1 {
             text-align: center;
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-size: 48px;
+            line-height: 1.15;
+            margin: 18px 0 14px;
+            color: #111827;
         }
 
         .subtitle {
             text-align: center;
             font-size: 18px;
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            line-height: 1.6;
+            color: #64748b;
+            max-width: 720px;
+            margin: 0 auto 34px auto;
+            line-height: 1.7;
         }
 
         .form-card {
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            padding: 24px;
+            background: #ffffff;
+            border: 1px solid #e5edf5;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
         }
 
         .field-label {
             display: block;
             font-size: 15px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            margin-top: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 18px;
+            color: #111827;
         }
 
         .field-label:first-child {
@@ -67,95 +75,125 @@
         input,
         textarea {
             width: 100%;
-            padding: 12px;
+            padding: 14px 16px;
             font-size: 15px;
             margin-bottom: 8px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            border: 1px solid #d8e1ec;
+            border-radius: 12px;
             box-sizing: border-box;
+            background: #fbfdff;
+            color: #111827;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #93c5fd;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(147, 197, 253, 0.18);
         }
 
         textarea {
             height: 220px;
             resize: vertical;
+            line-height: 1.6;
         }
 
         .helper-text {
             font-size: 14px;
-            color: #666;
-            margin-bottom: 12px;
+            color: #64748b;
+            margin-bottom: 14px;
+            line-height: 1.6;
         }
 
         button {
             margin-top: 18px;
-            padding: 12px 22px;
-            font-size: 16px;
+            padding: 13px 22px;
+            font-size: 15px;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 12px;
             border: none;
-            background: #111;
+            background: #2563eb;
             color: white;
+            font-weight: 600;
+            transition: 0.2s ease;
         }
 
         button:hover {
-            opacity: 0.92;
+            background: #1d4ed8;
         }
 
         .secondary-btn {
-            background: #f3f3f3;
-            color: #111;
-            border: 1px solid #ddd;
+            background: #ffffff;
+            border: 1px solid #d9e2ec;
+            color: #334155;
+            padding: 6px 14px;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .secondary-btn:hover {
+            background: #f8fafc;
         }
 
         #result {
             margin-top: 24px;
             white-space: pre-wrap;
-            background: #f7f7f7;
-            padding: 16px;
-            border-radius: 10px;
-            min-height: 24px;
+            background: #f8fbff;
+            padding: 18px;
+            border-radius: 14px;
+            min-height: 60px;
+            border: 1px solid #e5edf5;
+            color: #334155;
+            line-height: 1.7;
         }
 
         .error-message {
             margin-top: 24px;
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 14px;
             background: #eef6ff;
             border: 1px solid #cfe2ff;
             color: #0b57d0;
+            line-height: 1.7;
         }
 
         .error-message button {
             margin-top: 16px;
-            padding: 10px 18px;
-            font-size: 15px;
-            background: #0b57d0;
+            padding: 11px 18px;
+            font-size: 14px;
+            background: #2563eb;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
+            font-weight: 600;
         }
 
         .error-message button:hover {
-            opacity: 0.92;
+            background: #1d4ed8;
         }
 
         .free-note {
             margin-top: 14px;
             font-size: 14px;
-            color: #666;
+            color: #64748b;
+            line-height: 1.6;
         }
 
         .auth-note {
             text-align: center;
             margin-top: 22px;
             font-size: 14px;
-            color: #555;
+            color: #64748b;
         }
 
         .auth-note a {
-            color: #0b57d0;
+            color: #2563eb;
             text-decoration: none;
+            font-weight: 500;
         }
 
         .auth-note a:hover {
@@ -169,11 +207,39 @@
         .status-badge {
             display: inline-block;
             padding: 10px 14px;
-            background: #f3f3f3;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            background: #ffffff;
+            border: 1px solid #d8e1ec;
+            border-radius: 10px;
             font-size: 14px;
-            color: #333;
+            color: #334155;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 18px 16px 36px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 26px;
+            }
+
+            .form-card {
+                padding: 20px;
+                border-radius: 16px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .secondary-btn {
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -222,7 +288,6 @@
             logoutBtn.classList.remove("hidden");
             authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
         } else {
-            userStatus.innerText = "Guest mode";
             authMessage.innerHTML = `Already have an account? <a href="login.html">Login</a> | <a href="register.html">Register</a>`;
         }
 
@@ -251,7 +316,6 @@
                 return;
             }
 
-            // ⭐ 游客限制：只允许一次
             if (!token) {
                 const used = localStorage.getItem("guest_generate_used");
                 if (used === "1") {
@@ -326,7 +390,6 @@
                 a.download = "AI_Resume.docx";
                 a.click();
 
-                // ⭐ 标记游客已经使用过一次
                 if (!token) {
                     localStorage.setItem("guest_generate_used", "1");
                 }
