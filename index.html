@@ -20,6 +20,7 @@
         }
 
         body {
+            position: relative;
             font-family: "Inter", sans-serif;
             max-width: 920px;
             margin: 0 auto;
@@ -29,10 +30,15 @@
         }
 
         .top-bar {
-            position: fixed;
-            top: 12px;
-            right: 16px;
-            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            min-height: 36px;
+        }
+
+        .top-left,
+        .top-right {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -46,7 +52,7 @@
             color: #111827;
             font-weight: 600;
             letter-spacing: 0.01em;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         .subtitle {
@@ -138,8 +144,8 @@
             background: #ffffff;
             border: 1px solid #e5e7eb;
             color: #374151;
-            border-radius: 8px;
-            padding: 6px 12px;
+            border-radius: 10px;
+            padding: 7px 14px;
             font-size: 13px;
             font-weight: 500;
             box-shadow: none;
@@ -220,23 +226,21 @@
             display: none;
         }
 
-        .status-badge {
-            display: inline-block;
-            padding: 10px 14px;
-            background: #ffffff;
-            border: 1px solid #d8e1ec;
-            border-radius: 10px;
-            font-size: 14px;
-            color: #334155;
-        }
-
         .pro-badge {
-            background: #f5f3ff;
-            color: #6d28d9;
-            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 30px;
+            padding: 0 12px;
             border-radius: 999px;
             font-size: 12px;
             font-weight: 600;
+            letter-spacing: 0.01em;
+            background: linear-gradient(135deg, #fff7d6, #ffefb0);
+            color: #9a6700;
+            border: 1px solid #f2d27a;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
         }
 
         .gold {
@@ -244,6 +248,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         @media (max-width: 768px) {
@@ -251,8 +256,12 @@
                 padding: 18px 16px 36px;
             }
 
+            .top-bar {
+                margin-bottom: 16px;
+            }
+
             h1 {
-                font-size: 36px;
+                font-size: 32px;
             }
 
             .subtitle {
@@ -279,16 +288,22 @@
 <body>
 
     <div class="top-bar">
-        <span id="proBadge" class="pro-badge hidden">👑 PRO</span>
-        <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Logout</button>
+        <div class="top-left">
+            <span id="proBadge" class="pro-badge hidden">Pro</span>
+        </div>
+
+        <div class="top-right">
+            <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Sign out</button>
+        </div>
     </div>
 
     <h1>
-        Create an ATS-optimized resume in
-        <span class="gold">just 10 seconds</span>
+        Get an ATS-optimized resume in
+        <span class="gold">10 seconds</span>
     </h1>
+
     <p class="subtitle">
-        Paste your resume and get an ATS-optimized version instantly.
+        Paste your resume and let AI optimize it.
     </p>
 
     <div class="form-card">
@@ -296,9 +311,7 @@
         <input id="jobTitle" placeholder="Example: Software Test Engineer">
 
         <div class="helper-text">
-            <div class="helper-text">
-                Add a job title for better ATS keywords.
-            </div>
+            Add a job title for better ATS keywords.
         </div>
 
         <label class="field-label" for="inputText">Paste Your Resume</label>
@@ -326,32 +339,22 @@
         const proBadge = document.getElementById("proBadge");
 
         if (token) {
-
             logoutBtn.classList.remove("hidden");
-
             authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
-
-            checkUser();   // ⭐ 加这一行
-
         } else {
-
             authMessage.innerHTML = `Already have an account? <a href="login.html">Login</a> | <a href="register.html">Register</a>`;
-
         }
+
         function logout() {
             localStorage.removeItem("token");
-            alert("Logged out");
             window.location.href = "login.html";
         }
 
         async function checkUser() {
-
             const token = localStorage.getItem("token");
-
             if (!token) return;
 
             try {
-
                 const res = await fetch(API_BASE + "/me", {
                     headers: {
                         Authorization: "Bearer " + token
@@ -361,21 +364,16 @@
                 const data = await res.json();
 
                 if (data.is_paid) {
-
-                    document.getElementById("proBadge").style.display = "inline-block";
-
+                    proBadge.classList.remove("hidden");
                 }
-
             } catch (err) {
                 console.log(err);
             }
-
         }
 
         checkUser();
 
         async function generateResume() {
-
             const token = localStorage.getItem("token");
             const jobTitle = document.getElementById("jobTitle").value.trim();
             const input = document.getElementById("inputText").value.trim();
@@ -398,11 +396,11 @@
                 if (used === "1") {
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
-                <strong>Your free resume is ready.</strong><br/>
-                Create an account to continue generating resumes.
-                <br/>
-                <button onclick="window.location.href='login.html'">Login / Register</button>
-            `;
+                        <strong>Your free resume is ready.</strong><br/>
+                        Create an account to continue generating resumes.
+                        <br/>
+                        <button onclick="window.location.href='login.html'">Login / Register</button>
+                    `;
                     return;
                 }
             }
@@ -410,7 +408,6 @@
             resultDiv.innerText = "Generating your ATS-optimized resume...";
 
             try {
-
                 const headers = {
                     "Content-Type": "application/json"
                 };
@@ -431,31 +428,31 @@
                 if (response.status === 401) {
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
-                <strong>Your resume is ready.</strong><br/>
-                Login to continue and download your optimized resume.
-                <br/>
-                <button onclick="window.location.href='login.html'">Login to Continue</button>
-            `;
+                        <strong>Your resume is ready.</strong><br/>
+                        Login to continue and download your optimized resume.
+                        <br/>
+                        <button onclick="window.location.href='login.html'">Login to Continue</button>
+                    `;
                     return;
                 }
 
                 if (response.status === 403) {
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
-                <strong>Your resume is ready.</strong><br/>
-                Unlock download and unlimited resume optimization for $9.9.
-                <br/>
-                <button onclick="goToUpgrade()">Unlock Resume</button>
-            `;
+                        <strong>Your resume is ready.</strong><br/>
+                        Unlock download and unlimited resume optimization for $9.9.
+                        <br/>
+                        <button onclick="goToUpgrade()">Unlock Resume</button>
+                    `;
                     return;
                 }
 
                 if (!response.ok) {
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
-                <strong>Something went wrong.</strong><br/>
-                Please try again in a moment.
-            `;
+                        <strong>Something went wrong.</strong><br/>
+                        Please try again in a moment.
+                    `;
                     return;
                 }
 
@@ -474,17 +471,14 @@
                 resultDiv.innerText = "Your ATS-optimized resume has been generated and downloaded. ✅";
 
             } catch (error) {
-
                 resultDiv.className = "error-message";
                 resultDiv.innerHTML = `
-            <strong>Network error.</strong><br/>
-            Please check your connection and try again.
-        `;
+                    <strong>Network error.</strong><br/>
+                    Please check your connection and try again.
+                `;
 
                 console.error(error);
-
             }
-
         }
 
         function goToUpgrade() {
