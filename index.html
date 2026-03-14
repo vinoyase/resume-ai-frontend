@@ -160,6 +160,95 @@
             transform: none;
         }
 
+        .example-box {
+            margin-top: 26px;
+            padding: 22px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, #fcfdff 0%, #f8fbff 100%);
+            border: 1px solid #e5edf5;
+        }
+
+        .example-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .example-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0;
+        }
+
+        .example-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #eef2ff;
+            color: #4f46e5;
+            border: 1px solid #dbe4ff;
+            white-space: nowrap;
+        }
+
+        .example-subtitle {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .example-card {
+            background: #ffffff;
+            border: 1px solid #e7eef6;
+            border-radius: 14px;
+            padding: 16px;
+        }
+
+        .example-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .example-label.before {
+            color: #b45309;
+        }
+
+        .example-label.after {
+            color: #059669;
+        }
+
+        .example-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #334155;
+        }
+
+        .keyword {
+            display: inline;
+            background: #ecfdf5;
+            color: #047857;
+            border-radius: 6px;
+            padding: 1px 6px;
+            font-weight: 600;
+        }
+
         #result {
             margin-top: 24px;
             white-space: pre-wrap;
@@ -274,6 +363,10 @@
                 border-radius: 16px;
             }
 
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+
             button {
                 width: 100%;
             }
@@ -311,7 +404,7 @@
         <input id="jobTitle" placeholder="Example: Software Test Engineer">
 
         <div class="helper-text">
-            Add a job title for better ATS keywords.
+            Add a target job title so AI can match ATS keywords used by recruiters.
         </div>
 
         <label class="field-label" for="inputText">Paste Your Resume</label>
@@ -321,6 +414,35 @@
 
         <div class="free-note">
             Free users can generate 2 resumes. Upgrade to unlock unlimited optimization and download.
+        </div>
+
+        <div class="example-box">
+            <div class="example-head">
+                <h3 class="example-title">Example: Before vs After</h3>
+                <span class="example-badge">ATS-friendly rewrite</span>
+            </div>
+
+            <div class="example-subtitle">
+                See how AI turns a basic sentence into a stronger, more professional resume bullet.
+            </div>
+
+            <div class="example-grid">
+                <div class="example-card">
+                    <div class="example-label before">Before</div>
+                    <div class="example-text">
+                        Responsible for testing software.
+                    </div>
+                </div>
+
+                <div class="example-card">
+                    <div class="example-label after">After</div>
+                    <div class="example-text">
+                        Executed <span class="keyword">manual and automated test cases</span>,
+                        improving <span class="keyword">product stability</span> and reducing
+                        <span class="keyword">defects</span> by 30%.
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="result"></div>
