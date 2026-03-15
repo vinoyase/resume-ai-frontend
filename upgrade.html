@@ -116,7 +116,9 @@
 
     <div class="pricing">
 
+        <!-- Monthly -->
         <div class="card">
+
             <div class="plan-title">Monthly</div>
 
             <div class="price">$12.9 <small>/month</small></div>
@@ -131,10 +133,13 @@
             <button class="pay-btn" onclick="payMonthly()">
                 Start Monthly
             </button>
+
         </div>
 
+        <!-- Yearly -->
         <div class="card yearly">
-            <div class="plan-title">Yearly</div>
+
+            <div class="plan-title">Yearly ⭐</div>
 
             <div class="price">$89 <small>/year</small></div>
 
@@ -148,6 +153,7 @@
             <button class="pay-btn" onclick="payYearly()">
                 Start Yearly
             </button>
+
         </div>
 
     </div>
@@ -159,13 +165,32 @@
     <a class="back-link" href="index.html">← Back to Resume Generator</a>
 
     <script>
-        function payMonthly() {
-            window.location.href = "https://smartresume.lemonsqueezy.com/checkout/buy/e32558c3-7944-4adb-9a4e-6cd2c2f4e290";
+
+        // 读取 URL plan 参数
+        const params = new URLSearchParams(window.location.search);
+        const plan = params.get("plan");
+
+        // 如果带 plan 参数自动跳转
+        if (plan === "monthly") {
+            payMonthly();
         }
 
-        function payYearly() {
-            window.location.href = "https://smartresume.lemonsqueezy.com/checkout/buy/09c5f2e5-af7e-4608-a205-6b9310b1d821";
+        if (plan === "yearly") {
+            payYearly();
         }
+
+        // 月付
+        function payMonthly() {
+            window.location.href =
+                "https://smartresume.lemonsqueezy.com/checkout/buy/e32558c3-7944-4adb-9a4e-6cd2c2f4e290";
+        }
+
+        // 年付
+        function payYearly() {
+            window.location.href =
+                "https://smartresume.lemonsqueezy.com/checkout/buy/09c5f2e5-af7e-4608-a205-6b9310b1d821";
+        }
+
     </script>
 
 </body>
