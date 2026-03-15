@@ -586,24 +586,35 @@
 
             padding: 10px 18px;
 
+            font-size: 14px;
+
+            font-weight: 600;
+
             border-radius: 8px;
 
             border: 1px solid #d1d5db;
 
-            background: #f3f4f6;
+            background: #f9fafb;
 
             color: #374151;
 
-            font-weight: 600;
-
             cursor: pointer;
 
+            transition: 0.15s;
         }
 
         .upgrade-btn:hover {
 
-            background: #e5e7eb;
+            background: #f3f4f6;
 
+            border-color: #9ca3af;
+
+        }
+
+        .gold-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #eab308;
         }
 
         @media (max-width: 768px) {
@@ -867,9 +878,8 @@
 
                                 <div class="plan-option">
                                     <div class="plan-name">Pro Monthly</div>
-                                    <div class="plan-price">$12.9</div>
-                                    <div class="plan-sub">Flexible monthly billing</div>
-
+                                    <div class="plan-price gold-price">$12.9</div>
+                                    
                                     <button class="upgrade-btn" onclick="goToMonthlyUpgrade()">
                                         Upgrade Now
                                     </button>
@@ -878,8 +888,8 @@
 
                                 <div class="plan-option">
                                     <div class="plan-name">Pro Yearly</div>
-                                    <div class="plan-price">$89</div>
-                                    <div class="plan-sub">Lower overall cost for long-term use</div>
+                                    <div class="plan-price gold-price">$89</div>
+                                    
 
                                     <button class="upgrade-btn" onclick="goToYearlyUpgrade()">
                                         Upgrade Now
