@@ -390,23 +390,25 @@
         }
 
         .pricing-stack {
-            max-width: 360px;
+            max-width: 520px;
             margin: 0 auto;
+
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 14px;
         }
 
         .plan-option {
-            width: 100%;
-            display: block;
-            text-align: center;
+            flex: 1;
+
             border-radius: 16px;
             padding: 18px 16px;
+
             border: 1px solid #e5e7eb;
             background: #ffffff;
+
             transition: 0.2s ease;
-            box-shadow: none;
+            text-align: center;
         }
 
         .plan-option:hover {
@@ -539,22 +541,30 @@
         }
 
         .price-btn {
-            width: 100%;
-            background: #0b0b0b !important;
-            color: #ffffff !important;
+            display: block;
+            width: 85%;
+            margin: 18px auto 0;
+
+            background: #111111;
+            color: #ffffff;
+
             border: none;
-            border-radius: 12px;
-            padding: 14px 18px;
-            font-size: 15px;
+            border-radius: 10px;
+
+            padding: 10px 16px;
+
+            font-size: 14px;
             font-weight: 600;
+
             cursor: pointer;
-            margin-top: 0;
+
+            transition: all 0.2s ease;
         }
 
         .price-btn:hover {
-            background: #111111 !important;
+            background: #000000;
             transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
 
         .checkout-note {
@@ -814,49 +824,30 @@
                 if (response.status === 403) {
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
-                    <div class="paywall-wrap">
-                        <h2 class="paywall-title">Unlock Pro</h2>
-
-                        <div class="pricing-cards">
-                            <div class="price-card">
-                                <div class="price-card-title">Monthly</div>
-                                <div class="price-value">$12.9 <span>/month</span></div>
-
-                                <ul class="price-features">
-                                    <li>Unlimited resume generation</li>
-                                    <li>ATS-optimized resume output</li>
-                                    <li>Download Word resume</li>
-                                    <li>Cancel anytime</li>
-                                </ul>
-
-                                <button class="price-btn" onclick="goToMonthlyUpgrade()">Start Monthly</button>
+                        <div class="upgrade-card">
+                            <div class="upgrade-title">Your resume is ready.</div>
+                            <div class="upgrade-desc">
+                                Upgrade to Pro to download your Word resume and unlock unlimited resume optimization.
                             </div>
 
-                            <div class="price-card yearly-card">
-                                <div class="price-card-title">Yearly ⭐</div>
-                                <div class="price-value">$89 <span>/year</span></div>
+                            <div class="pricing-stack">
+                                <button class="plan-option" onclick="goToMonthlyUpgrade()">
+                                    <div class="plan-name">Pro Monthly</div>
+                                    <div class="plan-price">$12.9</div>
+                                    <div class="plan-sub">Flexible monthly billing</div>
+                                </button>
 
-                                <ul class="price-features">
-                                    <li>Unlimited resume generation</li>
-                                    <li>ATS-optimized resume output</li>
-                                    <li>Download Word resume</li>
-                                    <li>Save 43%</li>
-                                </ul>
+                                <button class="plan-option" onclick="goToYearlyUpgrade()">
+                                    <div class="plan-name">Pro Yearly</div>
+                                    <div class="plan-price">$89</div>
+                                    <div class="plan-sub">Lower overall cost for long-term use</div>
+                                </button>
 
-                                <button class="price-btn" onclick="goToYearlyUpgrade()">Start Yearly</button>
+                                <div class="plan-footnote">
+                                    Choose the plan that fits your needs.
+                                </div>
                             </div>
                         </div>
-
-                        <div class="checkout-note">Secure checkout powered by LemonSqueezy</div>
-                    </div>
-                `;
-                    return;
-                }
-                if (!response.ok) {
-                    resultDiv.className = "error-message";
-                    resultDiv.innerHTML = `
-                        <strong>Something went wrong.</strong><br/>
-                        Please try again in a moment.
                     `;
                     return;
                 }
@@ -887,11 +878,11 @@
         }
 
         function goToMonthlyUpgrade() {
-            window.location.href = "https://smartresume.lemonsqueezy.com/checkout/buy/e32558c3-7944-4adb-9a4e-6cd2c2f4e290";
+            window.location.href = "upgrade.html?plan=monthly";
         }
 
         function goToYearlyUpgrade() {
-            window.location.href = "https://smartresume.lemonsqueezy.com/checkout/buy/09c5f2e5-af7e-4608-a205-6b9310b1d821";
+            window.location.href = "upgrade.html?plan=yearly";
         }
 
     </script>
