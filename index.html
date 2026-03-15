@@ -359,6 +359,46 @@
             text-decoration: underline;
         }
 
+
+        .upgrade-box {
+            margin-top: 16px;
+            padding: 18px;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background: #fffaf5;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        .plan-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .plan-buttons button {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #111827;
+            color: white;
+        }
+
+        .plan-buttons button:hover {
+            opacity: 0.92;
+        }
+
+        .plan-note {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+
         @media (max-width: 768px) {
             body {
                 padding: 18px 16px 36px;
@@ -588,10 +628,20 @@
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
                         <strong>Your resume is ready.</strong><br/>
-                        Unlock download and unlimited resume optimization for $9.9.
-                        <br/>
-                        <button onclick="goToUpgrade()">Unlock Resume</button>
-                    `;
+                        Upgrade to Pro to download Word and unlock unlimited resume optimization.<br/><br/>
+
+                        <button onclick="goToMonthlyUpgrade()">
+                        Pro Monthly – $12.9
+                        </button>
+
+                        <button onclick="goToYearlyUpgrade()">
+                        Pro Yearly – $89
+                        </button>
+
+                        <div style="margin-top:8px;font-size:13px;color:#777;">
+                        Save more with yearly billing.
+                        </div>
+                        `;
                     return;
                 }
 
@@ -629,8 +679,12 @@
             }
         }
 
-        function goToUpgrade() {
-            window.location.href = "upgrade.html";
+        function goToMonthlyUpgrade() {
+            window.location.href = "upgrade.html?plan=monthly";
+        }
+
+        function goToYearlyUpgrade() {
+            window.location.href = "upgrade.html?plan=yearly";
         }
     </script>
 
