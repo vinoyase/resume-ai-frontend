@@ -617,6 +617,45 @@
             color: #eab308;
         }
 
+        .upgrade-price {
+
+            font-size: 32px;
+            font-weight: 700;
+            color: #eab308;
+            margin: 16px 0;
+        }
+
+        .main-upgrade-btn {
+
+            margin-top: 12px;
+
+            padding: 14px 26px;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            border-radius: 10px;
+
+            border: none;
+
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+
+            color: white;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .main-upgrade-btn:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35);
+
+        }
+
         @media (max-width: 768px) {
             .pricing-cards {
                 flex-direction: column;
@@ -869,34 +908,24 @@
                     resultDiv.className = "error-message";
                     resultDiv.innerHTML = `
                         <div class="upgrade-card">
-                            <div class="upgrade-title">Your resume is ready.</div>
+
+                            <div class="upgrade-title">
+                                Your resume is ready
+                            </div>
+
                             <div class="upgrade-desc">
-                                Upgrade to Pro to download your Word resume and unlock unlimited resume optimization.
+                                Unlock download and unlimited resume optimization.
                             </div>
 
-                            <div class="pricing-stack">
-
-                                <div class="plan-option">
-                                    <div class="plan-name">Pro Monthly</div>
-                                    <div class="plan-price gold-price">$12.9</div>
-                                    
-                                    <button class="upgrade-btn" onclick="goToMonthlyUpgrade()">
-                                        Upgrade Now
-                                    </button>
-                                </div>
-
-
-                                <div class="plan-option">
-                                    <div class="plan-name">Pro Yearly</div>
-                                    <div class="plan-price gold-price">$89</div>
-                                    
-
-                                    <button class="upgrade-btn" onclick="goToYearlyUpgrade()">
-                                        Upgrade Now
-                                    </button>
-                                </div>
-
+                            <div class="upgrade-price">
+                                $12.9 / month
                             </div>
+
+                            <button class="main-upgrade-btn" onclick="goToMonthlyUpgrade()">
+                                Unlock & Download Resume
+                            </button>
+
+                        </div>
                     `;
                     return;
                 }
