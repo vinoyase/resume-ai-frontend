@@ -580,6 +580,24 @@
             color: #6b7280;
         }
 
+        .upgrade-btn {
+            margin-top: 10px;
+            padding: 12px 18px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upgrade-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+        }
+
         @media (max-width: 768px) {
             .pricing-cards {
                 flex-direction: column;
@@ -842,14 +860,18 @@
                                     <div class="plan-name">Pro Monthly</div>
                                     <div class="plan-price">$12.9</div>
                                     <div class="plan-sub">Flexible monthly billing</div>
-                                    <div class="plan-action">Choose plan →</div>
+                                    <button class="upgrade-btn" onclick="goToUpgrade()">
+                                    Upgrade Now
+                                    </button>
                                 </button>
 
                                 <button class="plan-option" onclick="goToYearlyUpgrade()">
                                     <div class="plan-name">Pro Yearly</div>
                                     <div class="plan-price">$89</div>
                                     <div class="plan-sub">Lower overall cost for long-term use</div>
-                                    <div class="plan-action">Choose plan →</div>
+                                    <button class="upgrade-btn" onclick="goToUpgrade()">
+                                    Upgrade Now
+                                    </button>
                                 </button>
 
                                 
