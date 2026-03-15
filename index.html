@@ -76,13 +76,10 @@
             display: block;
             font-size: 15px;
             font-weight: 600;
-            margin-bottom: 10px;
-            margin-top: 18px;
             color: #111827;
-        }
-
-        .field-label:first-child {
-            margin-top: 0;
+            margin: 0 0 10px 0;
+            margin-bottom: 10px;
+            margin-top: 26px;
         }
 
         input,
@@ -90,7 +87,6 @@
             width: 100%;
             padding: 14px 16px;
             font-size: 15px;
-            margin-bottom: 8px;
             border: 1px solid #d8e1ec;
             border-radius: 12px;
             box-sizing: border-box;
@@ -99,6 +95,7 @@
             outline: none;
             transition: 0.2s ease;
         }
+
 
         input:focus,
         textarea:focus {
@@ -118,6 +115,12 @@
             color: #64748b;
             margin-bottom: 14px;
             line-height: 1.6;
+        }
+
+        .privacy-note {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 8px;
         }
 
         button {
@@ -340,6 +343,22 @@
             white-space: nowrap;
         }
 
+        .support-note {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .support-note a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .support-note a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 18px 16px 36px;
@@ -404,11 +423,12 @@
         <label class="field-label" for="jobTitle">Target Job Title</label>
         <input id="jobTitle" placeholder="Example: Software Test Engineer">
 
-        <div class="helper-text">
-            Add a target job title so AI can match ATS keywords used by recruiters.
-        </div>
+
 
         <label class="field-label" for="inputText">Paste Your Resume</label>
+        <p class="privacy-note">
+            🔒 Your resume is private. We never store your data.
+        </p>
         <textarea id="inputText" placeholder="Paste your resume content here..."></textarea>
 
         <button onclick="generateResume()">⚡ Improve My Resume</button>
@@ -451,6 +471,11 @@
 
     <div class="auth-note">
         <span id="authMessage"></span>
+    </div>
+
+    <div class="support-note">
+        Need help? Contact support:
+        <a href="mailto:support@smartresumeaip.com">support@smartresumeaip.com</a>
     </div>
 
     <script>

@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>Upgrade to Pro</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -14,59 +19,86 @@
             color: #222;
         }
 
-        .card {
-            max-width: 520px;
-            margin: 0 auto;
-            background: white;
-            border: 1px solid #e5e5e5;
-            border-radius: 14px;
-            padding: 40px 30px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-        }
-
         h1 {
-            margin-bottom: 12px;
+            margin: 0 0 40px;
             font-size: 36px;
         }
 
-        p {
-            color: #555;
-            font-size: 16px;
-            line-height: 1.6;
+        .pricing {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 320px;
+            background: #fff;
+            border: 1px solid #e9e9e9;
+            border-radius: 14px;
+            padding: 36px 28px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .card.yearly {
+            background: #fff9db;
+            border: 1px solid #e6c200;
+        }
+
+        .plan-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .price {
-            margin: 28px 0 16px;
-            font-size: 30px;
+            margin: 18px 0 20px;
+            font-size: 32px;
             font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .price small {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
         }
 
         .feature-list {
             text-align: left;
-            max-width: 320px;
-            margin: 24px auto;
-            color: #333;
+            margin: 20px auto 0;
             line-height: 1.8;
+            color: #333;
+            min-height: 150px;
         }
 
         .pay-btn {
-            margin-top: 20px;
-            padding: 14px 28px;
+            margin-top: 16px;
+            padding: 14px 26px;
             font-size: 16px;
             border: none;
             border-radius: 10px;
             background: #111;
             color: white;
             cursor: pointer;
+            width: 100%;
+            transition: opacity 0.2s ease;
         }
 
         .pay-btn:hover {
             opacity: 0.92;
         }
 
+        .note {
+            margin-top: 40px;
+            font-size: 13px;
+            color: #777;
+        }
+
         .back-link {
             display: inline-block;
-            margin-top: 24px;
+            margin-top: 20px;
             color: #0b57d0;
             text-decoration: none;
             font-size: 14px;
@@ -75,47 +107,64 @@
         .back-link:hover {
             text-decoration: underline;
         }
-
-        .note {
-            margin-top: 16px;
-            font-size: 13px;
-            color: #777;
-        }
     </style>
 </head>
 
 <body>
 
-    <div class="card">
-        <h1>Unlock Pro</h1>
+    <h1>Unlock Pro</h1>
 
-        <p>
-            Get unlimited resume optimization and download your ATS-optimized resume instantly.
-        </p>
+    <div class="pricing">
 
-        <div class="price">$9.9 – Lifetime Access</div>
+        <div class="card">
+            <div class="plan-title">Monthly</div>
 
-        <div class="feature-list">
-            ✓ Unlimited resume generation<br>
-            ✓ ATS-optimized resume output<br>
-            ✓ Download your resume in Word format<br>
-            ✓ One-time payment, no subscription
+            <div class="price">$12.9 <small>/month</small></div>
+
+            <div class="feature-list">
+                ✓ Unlimited resume generation<br>
+                ✓ ATS-optimized resume output<br>
+                ✓ Download Word resume<br>
+                ✓ Cancel anytime
+            </div>
+
+            <button class="pay-btn" onclick="payMonthly()">
+                Start Monthly
+            </button>
         </div>
 
-        <button class="pay-btn" onclick="pay()">
-            Unlock Resume
-        </button>
+        <div class="card yearly">
+            <div class="plan-title">Yearly</div>
 
-        <div class="note">
-            Secure checkout powered by LemonSqueezy
+            <div class="price">$89 <small>/year</small></div>
+
+            <div class="feature-list">
+                ✓ Unlimited resume generation<br>
+                ✓ ATS-optimized resume output<br>
+                ✓ Download Word resume<br>
+                ✓ Save 43%
+            </div>
+
+            <button class="pay-btn" onclick="payYearly()">
+                Start Yearly
+            </button>
         </div>
 
-        <a class="back-link" href="index.html">← Back to Resume Generator</a>
     </div>
 
+    <div class="note">
+        Secure checkout powered by LemonSqueezy
+    </div>
+
+    <a class="back-link" href="index.html">← Back to Resume Generator</a>
+
     <script>
-        function pay() {
-            window.location.href = "https://aitoolslab.lemonsqueezy.com/checkout/buy/42ce8b0c-8ce7-4b4b-85fb-101e12dca1c0";
+        function payMonthly() {
+            window.location.href = "https://smartresume.lemonsqueezy.com/checkout/buy/e32558c3-7944-4adb-9a4e-6cd2c2f4e290";
+        }
+
+        function payYearly() {
+            window.location.href = "https://smartresume.lemonsqueezy.com/checkout/buy/09c5f2e5-af7e-4608-a205-6b9310b1d821";
         }
     </script>
 
