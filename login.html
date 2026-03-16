@@ -70,7 +70,7 @@
             width: 40px;
             height: 40px;
             border-radius: 12px;
-            background:linear-gradient(135deg,#7c3aed,#a855f7);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
             color: white;
             display: flex;
             align-items: center;
@@ -312,13 +312,22 @@
                 const data = await res.json();
 
                 if (res.ok) {
+                    // 保存 token
                     localStorage.setItem("token", data.token);
                     showMsg("Login successful", "success");
 
-                    setTimeout(() => {
-                        window.location.href = "index.html";
-                    }, 800);
+                    // 检查是否是付费用户
+                    if (data.is_paid) {
+                        // 付费用户，跳转到首页
+                        setTimeout(() => {
+                            window.location.href = "index.html";  // 付费用户跳转到主页
+                        }, 800);
+                    } else {
+                        // 非付费用户，提示升级
+                        showMsg("You need to upgrade your account to access this feature", "error");
+                    }
                 } else {
+                    // 登录失败，显示错误信息
                     showMsg(data.message || "Login failed", "error");
                 }
 

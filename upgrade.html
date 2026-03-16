@@ -107,6 +107,39 @@
         .back-link:hover {
             text-decoration: underline;
         }
+
+
+        /* 确保父容器是居中的 */
+        .note {
+            display: flex;
+            flex-direction: column;
+            /* 垂直排列 */
+            align-items: center;
+            /* 水平居中 */
+            justify-content: center;
+            /* 垂直居中 */
+            width: 100%;
+            text-align: left;
+            /* 确保文本左对齐 */
+            margin-top: 20px;
+            /* 上方适当间距 */
+        }
+
+        /* 第一行的文本 */
+        .left-text,
+        .back-link {
+            margin: 10px 0;
+            /* 两行之间的间距 */
+            text-align: left;
+            /* 保证文本左对齐 */
+        }
+
+        /* 精确对齐左边的文字，确保首字母对齐 */
+        .left-text,
+        .back-link {
+            padding-left: 0;
+            /* 确保两行文本的首字母对齐 */
+        }
     </style>
 </head>
 
@@ -134,6 +167,7 @@
                 Start Monthly
             </button>
 
+
         </div>
 
         <!-- Yearly -->
@@ -159,10 +193,17 @@
     </div>
 
     <div class="note">
-        Secure checkout powered by LemonSqueezy
+        <div class="left-text">
+            Secure checkout powered by LemonSqueezy
+        </div>
+        <a class="back-link" href="index.html">  Resume Generator</a>
     </div>
 
-    <a class="back-link" href="index.html">← Back to Resume Generator</a>
+    <!-- 退款政策链接放在 Back to Resume Generator 下面 -->
+    <p style="color: #6c757d; font-size: 14px;">Click to view our <a href="https://smartresumeaip.com/refund-policy"
+            target="_blank" style="color: #007bff; text-decoration: none;">Refund Policy</a> and understand the relevant
+        terms. To
+        protect your rights, please read this policy before making a purchase.</p>
 
     <script>
 
