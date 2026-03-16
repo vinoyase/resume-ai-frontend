@@ -287,6 +287,7 @@
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value.trim();
 
+            // 校验输入的邮箱和密码
             if (!email) {
                 showMsg("Enter your email", "error");
                 return;
@@ -311,16 +312,19 @@
 
                 const data = await res.json();
 
+                // 如果登录成功
                 if (res.ok) {
-                    // 保存 token
+                    // 保存 token 到 localStorage
                     localStorage.setItem("token", data.token);
+
+                    // 登录成功信息
                     showMsg("Login successful", "success");
 
-                    // 检查是否是付费用户
+                    // 判断用户是否为付费用户
                     if (data.is_paid) {
-                        // 付费用户，跳转到首页
+                        // 付费用户，跳转到主页
                         setTimeout(() => {
-                            window.location.href = "index.html";  // 付费用户跳转到主页
+                            window.location.href = "index.html"; // 付费用户跳转到主页
                         }, 800);
                     } else {
                         // 非付费用户，提示升级
@@ -332,6 +336,7 @@
                 }
 
             } catch (error) {
+                // 网络错误处理
                 showMsg("Network error", "error");
                 console.error(error);
             }
