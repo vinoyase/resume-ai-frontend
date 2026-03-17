@@ -321,17 +321,10 @@
                     showMsg("Login successful", "success");
 
                     // 检查用户的付费状态
-                    if (data.is_paid) {
-                        // 付费用户，跳转到主页
-                        localStorage.setItem("is_paid", true);  // 保存用户的付费状态
-                        setTimeout(() => {
-                            window.location.href = "index.html"; // 付费用户跳转到主页
-                        }, 800);
-                    } else {
-                        // 非付费用户，提示升级
-                        localStorage.setItem("is_paid", false);  // 保存非付费状态
-                        showMsg("You need to upgrade your account to access this feature", "error");
-                    }
+                    localStorage.setItem("is_paid", data.is_paid);
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 600);
                 } else {
                     // 登录失败，显示错误信息
                     showMsg(data.message || "Login failed", "error");
