@@ -26,64 +26,59 @@
 
         .pricing {
             display: flex;
-            justify-content: center;
-            align-items: stretch;
             gap: 30px;
-            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .card {
-            width: 320px;
-            background: #fff;
-            border: 1px solid #e9e9e9;
-            border-radius: 14px;
-            padding: 36px 28px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+            width: 300px;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #eee;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .card.yearly {
-            background: #fff9db;
-            border: 1px solid #e6c200;
+        .yearly {
+            border: 2px solid gold;
+            background: #fffbe6;
         }
 
         .plan-title {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
         .price {
-            margin: 18px 0 20px;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
-            line-height: 1.2;
-        }
-
-        .price small {
-            font-size: 14px;
-            color: #666;
-            font-weight: 600;
+            margin-bottom: 20px;
         }
 
         .feature-list {
+            min-height: 140px;
+            line-height: 30px;
+
             text-align: left;
-            margin: 20px auto 0;
-            line-height: 1.8;
-            color: #333;
-            min-height: 150px;
+            /* ⭐每行左对齐 */
+            width: fit-content;
+            /* ⭐宽度跟内容走 */
+            margin: 0 auto 20px;
+            /* ⭐整体居中 */
         }
 
         .pay-btn {
-            margin-top: 16px;
-            padding: 14px 26px;
-            font-size: 16px;
-            border: none;
-            border-radius: 10px;
-            background: #111;
-            color: white;
-            cursor: pointer;
             width: 100%;
-            transition: opacity 0.2s ease;
+            background: black;
+            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
 
         .pay-btn:hover {
@@ -191,19 +186,35 @@
         </div>
 
     </div>
+    <div class="page">
 
-    <div class="note">
-        <div class="left-text">
-            Secure checkout powered by LemonSqueezy
+        <div class="content">
+
+            <!-- pricing -->
+            <div class="pricing"> ... </div>
+
+            <div class="note">
+                <div class="left-text">
+                    Secure checkout powered by LemonSqueezy
+                </div>
+
+                <a class="back-link" href="index.html">
+                    Resume Generator
+                </a>
+            </div>
+
+            <p class="refund">
+                Click to view our
+                <a href="https://smartresumeaip.com/refund-policy" target="_blank">
+                    Refund Policy
+                </a>
+                and understand the relevant terms.
+            </p>
+
         </div>
-        <a class="back-link" href="index.html">  Resume Generator</a>
+
     </div>
 
-    <!-- 退款政策链接放在 Back to Resume Generator 下面 -->
-    <p style="color: #6c757d; font-size: 14px;">Click to view our <a href="https://smartresumeaip.com/refund-policy"
-            target="_blank" style="color: #007bff; text-decoration: none;">Refund Policy</a> and understand the relevant
-        terms. To
-        protect your rights, please read this policy before making a purchase.</p>
 
     <script>
 
