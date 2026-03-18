@@ -743,19 +743,66 @@
                 font-size: 16px;
                 font-weight: 700;
             }
+
+            .user-menu {
+                position: relative;
+            }
+
+            .avatar {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: #e5e7eb;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 18px;
+            }
+
+            .dropdown {
+                position: absolute;
+                top: 46px;
+                right: 0;
+                width: 160px;
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                display: none;
+                padding: 8px 0;
+            }
+
+            .dropdown button {
+                width: 100%;
+                padding: 10px 16px;
+                border: none;
+                background: none;
+                text-align: left;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+            .dropdown button:hover {
+                background: #f3f4f6;
+            }
         }
     </style>
 </head>
+
+
 
 <body>
 
     <div class="top-bar">
         <div></div>
 
-        <div class="header-buttons">
+        <div class="user-menu">
+            <div class="avatar" id="avatarBtn">👤</div>
 
-            
-            <button id="logoutBtn" class="secondary-btn hidden" onclick="logout()">Sign out</button>
+            <div class="dropdown" id="dropdown">
+                <button id="logoutBtn">Log out</button>
+            </div>
         </div>
     </div>
 
@@ -1005,6 +1052,30 @@
         function goToUpgrade() {
             window.location.href = "upgrade.html";
         }
+
+        const avatarBtn = document.getElementById("avatarBtn");
+        const dropdown = document.getElementById("dropdown");
+       
+
+        // 打开/关闭菜单
+        avatarBtn.addEventListener("click", () => {
+            dropdown.style.display =
+                dropdown.style.display === "block" ? "none" : "block";
+        });
+
+        // 点击外部关闭
+        document.addEventListener("click", (e) => {
+            if (!avatarBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = "none";
+            }
+        });
+
+        // 退出登录
+        logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("token");
+            window.location.href = "/login.html";
+        });
+
 
     </script>
 
