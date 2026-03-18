@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billing</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fb;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #10b981;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Billing</h1>
+
+        <!-- 当前套餐 -->
+        <div class="card">
+            <p><strong>Plan:</strong> Free</p>
+            <p><strong>Status:</strong> Active</p>
+        </div>
+
+        <!-- 升级 -->
+        <div class="card">
+            <h3>Upgrade to Pro</h3>
+            <p>Unlock unlimited resume optimization</p>
+            <button onclick="goCheckout()">Upgrade Now</button>
+        </div>
+
+        <!-- 管理订阅 -->
+        <div class="card">
+            <h3>Manage Subscription</h3>
+            <p>You can manage or cancel your subscription anytime.</p>
+            <button onclick="manageBilling()">Manage Billing</button>
+        </div>
+
+    </div>
+
+    <script>
+        function goCheckout() {
+            // 换成你的 Lemon 支付链接
+            window.location.href = "https://your-checkout-link.lemonsqueezy.com";
+        }
+
+        function manageBilling() {
+            // 后面你可以接 Lemon customer portal
+            alert("Coming soon");
+        }
+    </script>
+
+</body>
+
+</html>

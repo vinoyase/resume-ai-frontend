@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fb;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #6366f1;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Dashboard</h1>
+
+        <!-- 用户信息 -->
+        <h2>Account</h2>
+        <div class="card">
+            <p>Email: user@email.com</p>
+            <p>Plan: Free</p>
+        </div>
+
+        <!-- 使用记录 -->
+        <h2>Your Resumes</h2>
+        <div class="card">Software Engineer Resume</div>
+        <div class="card">Product Manager Resume</div>
+
+        <!-- 操作 -->
+        <h2>Actions</h2>
+        <button onclick="goHome()">+ Create New Resume</button>
+        <button onclick="goUpgrade()">Upgrade to Pro</button>
+
+    </div>
+
+    <script>
+        function goHome() {
+            window.location.href = "/";
+        }
+
+        function goUpgrade() {
+            window.location.href = "/upgrade.html";
+        }
+    </script>
+
+</body>
+
+</html>
