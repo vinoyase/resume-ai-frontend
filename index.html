@@ -766,6 +766,9 @@
         <textarea id="inputText" placeholder="Paste your resume content here..."></textarea>
 
         <button onclick="generateResume()">⚡ Improve My Resume</button>
+        <div id="loadingText" class="ats-loading-banner" style="display:none">
+            🔵 Generating your ATS-optimized resume...
+        </div>
 
         <div class="free-note">
             Free users can generate 2 resumes. Upgrade to unlock unlimited optimization and download.
@@ -863,6 +866,7 @@
 
             resultDiv.className = "";
 
+
             if (!jobTitle) {
                 alert("Please enter the target job title.");
                 return;
@@ -888,10 +892,7 @@
                 }
             }
 
-            // resultDiv.innerText = "Generating your ATS-optimized resume...";
-            <div id="loadingText" class="ats-loading-banner">
-                Generating your ATS-optimized resume...
-            </div>
+            resultDiv.innerText = "Generating your ATS-optimized resume...";
 
             try {
                 const headers = {
