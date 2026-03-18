@@ -660,6 +660,18 @@
             /* Adds spacing between the buttons */
         }
 
+        .ats-loading-banner {
+            background: #e8f1ff;
+            border: 1px solid #3b82f6;
+            color: #1d4ed8;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+            animation: pulseBlue 1.2s infinite;
+        }
+
         @media (max-width: 768px) {
             .pricing-cards {
                 flex-direction: column;
@@ -876,7 +888,10 @@
                 }
             }
 
-            resultDiv.innerText = "Generating your ATS-optimized resume...";
+            // resultDiv.innerText = "Generating your ATS-optimized resume...";
+            <div id="loadingText" class="ats-loading-banner">
+                Generating your ATS-optimized resume...
+            </div>
 
             try {
                 const headers = {
