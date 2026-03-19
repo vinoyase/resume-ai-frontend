@@ -780,6 +780,25 @@
             .dropdown button:hover {
                 background: #f3f4f6;
             }
+
+            .refund {
+                font-size: 13px;
+                color: #6b7280;
+                line-height: 1.6;
+                margin: 10px auto 0;
+                text-align: center;
+                max-width: 560px;
+            }
+
+            .refund a {
+                color: #2563eb;
+                font-weight: 500;
+                text-decoration: none;
+            }
+
+            .refund a:hover {
+                text-decoration: underline;
+            }
         }
     </style>
 </head>
@@ -793,6 +812,7 @@
 
         <div class="top-nav">
             <span class="avatar">👤</span>
+            <a href="/billing.html">Billing</a>
             <span class="divider">|</span>
             <a href="#" onclick="logout()">Log out</a>
         </div>
@@ -866,6 +886,14 @@
         Need help? Contact support:
         <a href="mailto:support@smartresumeaip.com">support@smartresumeaip.com</a>
     </div>
+
+    <p class="refund" style="font-size:13px; color:#777; line-height:1.6; margin-top:12px;text-align:center;">
+        By purchasing, you agree to our
+        <a href="terms-of-service.html" target="_blank">Terms of Service</a>,
+        <a href="terms-of-service.html" target="_blank">Privacy Policy</a>,
+        and
+        <a href="refund-policy.html" target="_blank">Refund Policy</a>.
+    </p>
 
     <script>
         const API_BASE = "https://resume-ai-saas-4.onrender.com/api";

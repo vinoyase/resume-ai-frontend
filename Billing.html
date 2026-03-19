@@ -3,38 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Billing</title>
+    <title>Billing Policy</title>
 
     <style>
         body {
-            font-family: Arial;
-            background: #f5f7fb;
-            padding: 40px;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
         }
 
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
+        h1 {
+            margin-bottom: 20px;
         }
 
-        .card {
-            background: #f9fafb;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        button {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            background: #10b981;
-            color: white;
-            cursor: pointer;
-            margin-top: 10px;
+        h2 {
+            margin-top: 25px;
         }
     </style>
 
@@ -42,43 +28,47 @@
 
 <body>
 
-    <div class="container">
+    <h1>Billing Policy</h1>
 
-        <h1>Billing</h1>
+    <p>
+        This page explains how billing and subscriptions work for our AI resume builder service.
+    </p>
 
-        <!-- 当前套餐 -->
-        <div class="card">
-            <p><strong>Plan:</strong> Free</p>
-            <p><strong>Status:</strong> Active</p>
-        </div>
+    <h2>Subscription</h2>
+    <p>
+        Our service is offered through a recurring subscription. When you purchase a plan,
+        you will be billed automatically according to the selected billing period.
+    </p>
 
-        <!-- 升级 -->
-        <div class="card">
-            <h3>Upgrade to Pro</h3>
-            <p>Unlock unlimited resume optimization</p>
-            <button onclick="goCheckout()">Upgrade Now</button>
-        </div>
+    <h2>Auto Renewal</h2>
+    <p>
+        Subscriptions renew automatically at the end of each billing cycle unless you cancel
+        before the next billing date.
+    </p>
 
-        <!-- 管理订阅 -->
-        <div class="card">
-            <h3>Manage Subscription</h3>
-            <p>You can manage or cancel your subscription anytime.</p>
-            <button onclick="manageBilling()">Manage Billing</button>
-        </div>
+    <h2>Cancellation</h2>
+    <p>
+        You may cancel your subscription at any time. After cancellation, you will continue
+        to have access to the service until the end of the current billing period.
+    </p>
 
-    </div>
+    <h2>Refund Policy</h2>
+    <p>
+        Due to the nature of digital services, refunds may not be provided after the service
+        has been used. If you experience technical issues, please contact support.
+    </p>
 
-    <script>
-        function goCheckout() {
-            // 换成你的 Lemon 支付链接
-            window.location.href = "https://your-checkout-link.lemonsqueezy.com";
-        }
+    <h2>Payment Processing</h2>
+    <p>
+        Payments are processed securely through our payment provider. We do not store
+        your full credit card information on our servers.
+    </p>
 
-        function manageBilling() {
-            // 后面你可以接 Lemon customer portal
-            alert("Coming soon");
-        }
-    </script>
+    <h2>Contact</h2>
+    <p>
+        If you have any billing questions, please contact us at:
+        support@smartresumeaip.com
+    </p>
 
 </body>
 
