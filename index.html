@@ -866,205 +866,205 @@
         <div></div>
 
         <div class="top-bar">
-        <div></div>
+            <div></div>
 
-        <div class="top-nav">
-            <span class="avatar">👤</span>
-            <a href="/Billing.html" target="_blank">Billing</a>
-            <span class="divider">|</span>
-            <a href="#" onclick="logout()">Log out</a>
+            <div class="top-nav">
+                <span class="avatar">👤</span>
+                <a href="/Billing.html" target="_blank">Billing</a>
+                <span class="divider">|</span>
+                <a href="#" onclick="logout()">Log out</a>
+            </div>
         </div>
-    </div>
 
-    <h1>
-        Get an ATS-optimized resume in
-        <span class="gold">10 seconds</span>
-    </h1>
+        <h1>
+            Get an ATS-optimized resume in
+            <span class="gold">10 seconds</span>
+        </h1>
 
-    <p class="subtitle">
-        Paste your resume and let AI help complete it.
-    </p>
-
-    <div class="form-card">
-        <label class="field-label" for="jobTitle">Target Job Title</label>
-        <input id="jobTitle" placeholder="Example: Software Test Engineer">
-
-        <label class="field-label" for="inputText">Paste Your Resume</label>
-        <p class="privacy-note">
-            🔒 Your resume stays private. We never store your data.
+        <p class="subtitle">
+            Paste your resume and let AI help complete it.
         </p>
-        <textarea id="inputText" placeholder="Paste your resume content here..."></textarea>
 
-        <button onclick="generateResume()">⚡ Improve My Resume</button>
-        <div id="loadingText" class="ats-loading-banner" style="display:none">
-            🔵 Generating your ATS-optimized resume...
-        </div>
+        <div class="form-card">
+            <label class="field-label" for="jobTitle">Target Job Title</label>
+            <input id="jobTitle" placeholder="Example: Software Test Engineer">
 
-        <div class="free-note">
-            Free users can generate 2 resumes. Upgrade to unlock unlimited optimization and download.
-        </div>
+            <label class="field-label" for="inputText">Paste Your Resume</label>
+            <p class="privacy-note">
+                🔒 Your resume stays private. We never store your data.
+            </p>
+            <textarea id="inputText" placeholder="Paste your resume content here..."></textarea>
 
-        <div class="example-box">
-            <div class="example-head">
-                <h3 class="example-title">Example: Before vs After</h3>
-                <span class="example-badge">ATS-friendly rewrite</span>
+            <button onclick="generateResume()">⚡ Improve My Resume</button>
+            <div id="loadingText" class="ats-loading-banner" style="display:none">
+                🔵 Generating your ATS-optimized resume...
             </div>
 
-            <div class="example-subtitle">
-                See how AI turns a basic sentence into a stronger, more professional resume bullet.
+            <div class="free-note">
+                Free users can generate 2 resumes. Upgrade to unlock unlimited optimization and download.
             </div>
 
-            <div class="example-grid">
-                <div class="example-card">
-                    <div class="example-label before">Before</div>
-                    <div class="example-text">
-                        Responsible for testing software.
-                    </div>
+            <div class="example-box">
+                <div class="example-head">
+                    <h3 class="example-title">Example: Before vs After</h3>
+                    <span class="example-badge">ATS-friendly rewrite</span>
                 </div>
 
-                <div class="example-card">
-                    <div class="example-label after">After</div>
-                    <div class="example-text">
-                        Executed <span class="keyword">manual and automated test cases</span>,
-                        improving <span class="keyword">product stability</span> and reducing
-                        <span class="keyword">defects</span> by 30%.
+                <div class="example-subtitle">
+                    See how AI turns a basic sentence into a stronger, more professional resume bullet.
+                </div>
+
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="example-label before">Before</div>
+                        <div class="example-text">
+                            Responsible for testing software.
+                        </div>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-label after">After</div>
+                        <div class="example-text">
+                            Executed <span class="keyword">manual and automated test cases</span>,
+                            improving <span class="keyword">product stability</span> and reducing
+                            <span class="keyword">defects</span> by 30%.
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div id="result"></div>
         </div>
 
-        <div id="result"></div>
-    </div>
+        <div class="auth-note">
+            <span id="authMessage"></span>
+        </div>
 
-    <div class="auth-note">
-        <span id="authMessage"></span>
-    </div>
+        <div class="support-note">
+            Need help? Contact support:
+            <a href="mailto:support@smartresumeaip.com">support@smartresumeaip.com</a>
+        </div>
 
-    <div class="support-note">
-        Need help? Contact support:
-        <a href="mailto:support@smartresumeaip.com">support@smartresumeaip.com</a>
-    </div>
+        <p class="refund" style="font-size:13px; color:#777; line-height:1.6; margin-top:12px;text-align:center;">
+            By purchasing, you agree to our
+            <a href="terms-of-service.html" target="_blank">Terms of Service</a>,
+            <a href="privacy-policy.html" target="_blank">Privacy Policy</a>,
+            and
+            <a href="refund-policy.html" target="_blank">Refund Policy</a>.
+        </p>
 
-    <p class="refund" style="font-size:13px; color:#777; line-height:1.6; margin-top:12px;text-align:center;">
-        By purchasing, you agree to our
-        <a href="terms-of-service.html" target="_blank">Terms of Service</a>,
-        <a href="privacy-policy.html" target="_blank">Privacy Policy</a>,
-        and
-        <a href="refund-policy.html" target="_blank">Refund Policy</a>.
-    </p>
-
-    <script>
-        const API_BASE = "https://resume-ai-saas-4.onrender.com/api";
-        const token = localStorage.getItem("token");
-
-        const logoutBtn = document.getElementById("logoutBtn");
-        const authMessage = document.getElementById("authMessage");
-        const proBadge = document.getElementById("proBadge");
-
-        if (token) {
-            logoutBtn.classList.remove("hidden");
-            authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
-        } else {
-            authMessage.innerHTML = `Already have an account? <a href="login.html">Login</a> | <a href="register.html">Register</a>`;
-        }
-
-        function logout() {
-            localStorage.removeItem("token");
-            window.location.href = "login.html";
-        }
-
-        async function checkUser() {
+        <script>
+            const API_BASE = "https://resume-ai-saas-4.onrender.com/api";
             const token = localStorage.getItem("token");
-            if (!token) return;
 
-            try {
-                const res = await fetch(API_BASE + "/me", {
-                    headers: {
-                        Authorization: "Bearer " + token
+            const logoutBtn = document.getElementById("logoutBtn");
+            const authMessage = document.getElementById("authMessage");
+            const proBadge = document.getElementById("proBadge");
+
+            if (token) {
+                logoutBtn.classList.remove("hidden");
+                authMessage.innerHTML = `Need another account? <a href="login.html">Login</a>`;
+            } else {
+                authMessage.innerHTML = `Already have an account? <a href="login.html">Login</a> | <a href="register.html">Register</a>`;
+            }
+
+            function logout() {
+                localStorage.removeItem("token");
+                window.location.href = "login.html";
+            }
+
+            async function checkUser() {
+                const token = localStorage.getItem("token");
+                if (!token) return;
+
+                try {
+                    const res = await fetch(API_BASE + "/me", {
+                        headers: {
+                            Authorization: "Bearer " + token
+                        }
+                    });
+
+                    const data = await res.json();
+
+                    if (data.is_paid) {
+                        proBadge.classList.remove("hidden");
                     }
-                });
-
-                const data = await res.json();
-
-                if (data.is_paid) {
-                    proBadge.classList.remove("hidden");
+                } catch (err) {
+                    console.log(err);
                 }
-            } catch (err) {
-                console.log(err);
-            }
-        }
-
-        checkUser();
-
-        async function generateResume() {
-            const token = localStorage.getItem("token");
-            const jobTitle = document.getElementById("jobTitle").value.trim();
-            const input = document.getElementById("inputText").value.trim();
-            const resultDiv = document.getElementById("result");
-
-            resultDiv.className = "";
-
-
-            if (!jobTitle) {
-                alert("Please enter the target job title.");
-                return;
             }
 
-            if (!input) {
-                alert("Please paste your resume first.");
-                return;
-            }
+            checkUser();
 
-            if (!token) {
-                const used = localStorage.getItem("guest_generate_used");
-                if (used === "1") {
-                    resultDiv.className = "error-message";
-                    resultDiv.innerHTML = `
+            async function generateResume() {
+                const token = localStorage.getItem("token");
+                const jobTitle = document.getElementById("jobTitle").value.trim();
+                const input = document.getElementById("inputText").value.trim();
+                const resultDiv = document.getElementById("result");
+
+                resultDiv.className = "";
+
+
+                if (!jobTitle) {
+                    alert("Please enter the target job title.");
+                    return;
+                }
+
+                if (!input) {
+                    alert("Please paste your resume first.");
+                    return;
+                }
+
+                if (!token) {
+                    const used = localStorage.getItem("guest_generate_used");
+                    if (used === "1") {
+                        resultDiv.className = "error-message";
+                        resultDiv.innerHTML = `
                         <strong>Your free resume is ready.</strong><br/>
                         Create an account to continue generating resumes.
                         <div class="inline-cta">
                             <button onclick="window.location.href='login.html'">Login / Register</button>
                         </div>
                     `;
-                    return;
-                }
-            }
-
-            resultDiv.innerText = "Generating your ATS-optimized resume...";
-
-            try {
-                const headers = {
-                    "Content-Type": "application/json"
-                };
-
-                if (token) {
-                    headers["Authorization"] = "Bearer " + token;
+                        return;
+                    }
                 }
 
-                const response = await fetch(API_BASE + "/generate", {
-                    method: "POST",
-                    headers,
-                    body: JSON.stringify({
-                        text: input,
-                        jobTitle: jobTitle
-                    })
-                });
+                resultDiv.innerText = "Generating your ATS-optimized resume...";
 
-                if (response.status === 401) {
-                    resultDiv.className = "error-message";
-                    resultDiv.innerHTML = `
+                try {
+                    const headers = {
+                        "Content-Type": "application/json"
+                    };
+
+                    if (token) {
+                        headers["Authorization"] = "Bearer " + token;
+                    }
+
+                    const response = await fetch(API_BASE + "/generate", {
+                        method: "POST",
+                        headers,
+                        body: JSON.stringify({
+                            text: input,
+                            jobTitle: jobTitle
+                        })
+                    });
+
+                    if (response.status === 401) {
+                        resultDiv.className = "error-message";
+                        resultDiv.innerHTML = `
                         <strong>Your resume is ready.</strong><br/>
                         Login to continue and download your optimized resume.
                         <div class="inline-cta">
                             <button onclick="window.location.href='login.html'">Login to Continue</button>
                         </div>
                     `;
-                    return;
-                }
+                        return;
+                    }
 
-                if (response.status === 403) {
-                    resultDiv.className = "error-message";
-                    resultDiv.innerHTML = `
+                    if (response.status === 403) {
+                        resultDiv.className = "error-message";
+                        resultDiv.innerHTML = `
                         <div class="upgrade-card">
 
                             <div class="upgrade-title">
@@ -1099,63 +1099,63 @@
 
                         </div>
                     `;
-                    return;
-                }
+                        return;
+                    }
 
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
 
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = "AI_Resume.docx";
-                a.click();
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "AI_Resume.docx";
+                    a.click();
 
-                if (!token) {
-                    localStorage.setItem("guest_generate_used", "1");
-                }
+                    if (!token) {
+                        localStorage.setItem("guest_generate_used", "1");
+                    }
 
-                resultDiv.innerText = "Your ATS-optimized resume has been generated and downloaded. ✅";
+                    resultDiv.innerText = "Your ATS-optimized resume has been generated and downloaded. ✅";
 
-            } catch (error) {
-                resultDiv.className = "error-message";
-                resultDiv.innerHTML = `
+                } catch (error) {
+                    resultDiv.className = "error-message";
+                    resultDiv.innerHTML = `
                     <strong>Network error.</strong><br/>
                     Please check your connection and try again.
                 `;
 
-                console.error(error);
+                    console.error(error);
+                }
             }
-        }
 
-        function goToUpgrade() {
-            window.location.href = "upgrade.html";
-        }
-
-        const avatarBtn = document.getElementById("avatarBtn");
-        const dropdown = document.getElementById("dropdown");
-
-
-        // 打开/关闭菜单
-        avatarBtn.addEventListener("click", () => {
-            dropdown.style.display =
-                dropdown.style.display === "block" ? "none" : "block";
-        });
-
-        // 点击外部关闭
-        document.addEventListener("click", (e) => {
-            if (!avatarBtn.contains(e.target) && !dropdown.contains(e.target)) {
-                dropdown.style.display = "none";
+            function goToUpgrade() {
+                window.location.href = "upgrade.html";
             }
-        });
 
-        // 退出登录
-        logoutBtn.addEventListener("click", () => {
-            localStorage.removeItem("token");
-            window.location.href = "/login.html";
-        });
+            const avatarBtn = document.getElementById("avatarBtn");
+            const dropdown = document.getElementById("dropdown");
 
 
-    </script>
+            // 打开/关闭菜单
+            avatarBtn.addEventListener("click", () => {
+                dropdown.style.display =
+                    dropdown.style.display === "block" ? "none" : "block";
+            });
+
+            // 点击外部关闭
+            document.addEventListener("click", (e) => {
+                if (!avatarBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.style.display = "none";
+                }
+            });
+
+            // 退出登录
+            logoutBtn.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                window.location.href = "/login.html";
+            });
+
+
+        </script>
 
 </body>
 
