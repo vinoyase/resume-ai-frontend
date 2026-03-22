@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Upgrade to Pro</title>
 
     <style>
@@ -21,67 +20,54 @@
         }
 
         h1 {
-            margin: 0 0 14px;
+            margin: 0 0 40px;
             font-size: 36px;
-        }
-
-        .sub {
-            margin: 0 0 36px;
-            color: #666;
-            font-size: 16px;
         }
 
         .pricing {
             display: flex;
+            gap: 30px;
             justify-content: center;
         }
 
         .card {
-            width: 340px;
-            padding: 34px 30px;
-            border-radius: 18px;
-            border: 2px solid gold;
-            background: #fffbe6;
+            width: 300px;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #eee;
+
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
         }
 
-        .badge {
-            display: inline-block;
-            margin: 0 auto 12px;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: #111;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 600;
+        .yearly {
+            border: 2px solid gold;
+            background: #fffbe6;
         }
 
         .plan-title {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
         .price {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: bold;
-            margin-bottom: 6px;
-        }
-
-        .price-note {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .feature-list {
+            min-height: 140px;
             line-height: 30px;
+
             text-align: left;
+            /* ⭐每行左对齐 */
             width: fit-content;
-            margin: 0 auto 26px;
+            /* ⭐宽度跟内容走 */
+            margin: 0 auto 20px;
+            /* ⭐整体居中 */
         }
 
         .pay-btn {
@@ -93,7 +79,6 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 600;
         }
 
         .pay-btn:hover {
@@ -101,17 +86,24 @@
         }
 
         .note {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 24px;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #777;
         }
 
-        .left-text,
         .back-link {
-            margin: 10px 0;
-            text-align: left;
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 15px;
+            color: #777;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all .2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-3px);
+            text-decoration: underline;
         }
 
         .refund {
@@ -133,19 +125,26 @@
             text-decoration: underline;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 8px;
-            font-size: 15px;
-            color: #777;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all .2s ease;
+        /* 确保父容器是居中的 */
+        .note {
+            display: flex;
+            flex-direction: column;
+            /* 垂直排列 */
+            align-items: center;
+            /* 水平居中 */
+            justify-content: center;
+            /* 垂直居中 */
+            margin-top: 20px;
+            /* 上方适当间距 */
         }
 
-        .back-link:hover {
-            transform: translateX(-3px);
-            text-decoration: underline;
+        /* 第一行的文本 */
+        .left-text,
+        .back-link {
+            margin: 10px 0;
+            /* 两行之间的间距 */
+            text-align: left;
+            /* 保证文本左对齐 */
         }
     </style>
 </head>
@@ -153,81 +152,110 @@
 <body>
 
     <h1>Unlock Pro</h1>
-    <p class="sub">One-time payment. Lifetime access.</p>
 
     <div class="pricing">
+
+        <!-- Monthly -->
         <div class="card">
-            <div class="badge">Best Value</div>
 
-            <div class="plan-title">Lifetime Pro</div>
+            <div class="plan-title">Monthly</div>
 
-            <div class="price">$9.9</div>
-            <div class="price-note">Pay once, use forever</div>
+            <div class="price">$12.9 <small>/month</small></div>
 
             <div class="feature-list">
                 ✓ Unlimited resume generation<br>
                 ✓ ATS-optimized resume output<br>
                 ✓ Download Word resume<br>
-                ✓ One-time payment<br>
-                ✓ Lifetime access
+                ✓ Cancel anytime
             </div>
 
-            <button class="pay-btn" onclick="goToCheckout()">
-                Unlock Lifetime Pro
+            <button class="pay-btn" onclick="payMonthly()">
+                Start Monthly
             </button>
-        </div>
-    </div>
 
-    <div class="note">
-        <div class="left-text">
-            Secure checkout powered by Stripe
+
         </div>
 
-        <p class="refund">
-            By purchasing, you agree to our
-            <a href="terms-of-service.html" target="_blank">Terms of Service</a>,
-            <a href="privacy-policy.html" target="_blank">Privacy Policy</a>,
-            and
-            <a href="refund-policy.html" target="_blank">Refund Policy</a>.
-        </p>
+        <!-- Yearly -->
+        <div class="card yearly">
 
-        <a class="back-link" href="index.html">← Back</a>
+            <div class="plan-title">Yearly ⭐</div>
+
+            <div class="price">$89 <small>/year</small></div>
+
+            <div class="feature-list">
+                ✓ Unlimited resume generation<br>
+                ✓ ATS-optimized resume output<br>
+                ✓ Download Word resume<br>
+                ✓ Save 43%
+            </div>
+
+            <button class="pay-btn" onclick="payYearly()">
+                Start Yearly
+            </button>
+
+        </div>
+
     </div>
+    <div class="page">
+
+        <div class="content">
+
+            <!-- pricing -->
+            <div class="pricing"> ... </div>
+
+            <div class="note">
+                <div class="left-text">
+                    Secure checkout powered by LemonSqueezy
+                </div>
+
+                <p class="refund">
+                    By purchasing, you agree to our
+                    <a href="terms-of-service.html" target="_blank">Terms of Service</a>,
+                    <a href="privacy-policy.html" target="_blank">Privacy Policy</a>,
+                    and
+                    <a href="refund-policy.html" target="_blank">Refund Policy</a>.
+                </p>
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
 
     <script>
-        const API_BASE = "https://resume-ai-saas-4.onrender.com";
 
-        async function goToCheckout() {
-            try {
-                const token = localStorage.getItem("token");
+        // 读取 URL plan 参数
+        const params = new URLSearchParams(window.location.search);
+        const plan = params.get("plan");
 
-                if (!token) {
-                    alert("Please log in first.");
-                    window.location.href = "login.html";
-                    return;
-                }
-
-                const res = await fetch(`${API_BASE}/api/create-checkout-session`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                });
-
-                const data = await res.json();
-
-                if (!res.ok) {
-                    alert(data.message || "Failed to start checkout.");
-                    return;
-                }
-
-                window.location.href = data.url;
-            } catch (error) {
-                console.error("checkout error:", error);
-                alert("Something went wrong. Please try again.");
-            }
+        // 如果带 plan 参数自动跳转
+        if (plan === "monthly") {
+            payMonthly();
         }
+
+        if (plan === "yearly") {
+            payYearly();
+        }
+
+        // 月付
+        function payMonthly() {
+            window.location.href =
+                "https://smartresume.lemonsqueezy.com/checkout/buy/e32558c3-7944-4adb-9a4e-6cd2c2f4e290";
+        }
+
+        // 年付
+        function payYearly() {
+            window.location.href =
+                "https://smartresume.lemonsqueezy.com/checkout/buy/09c5f2e5-af7e-4608-a205-6b9310b1d821";
+        }
+
     </script>
 
 </body>
