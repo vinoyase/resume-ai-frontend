@@ -7,6 +7,14 @@
     <title>Sign in - SmartResume AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7PWR77XD5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-P7PWR77XD5');
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -311,7 +319,7 @@
                     gtag('event', 'login', {
                         method: 'email'
                     });
-                    
+
                     // 保存 token 到 localStorage
                     localStorage.setItem("token", data.token);
 

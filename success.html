@@ -1,18 +1,42 @@
-<h1>Payment Successful 🎉</h1>
-<p>Thank you for upgrading to Pro.</p>
-<p>You now have unlimited resume generation.</p>
+<!DOCTYPE html>
+<html lang="en">
 
-<button onclick="window.location.href='/'">
-    Go back to Resume Builder
-</button>
-<script>
-    if (!localStorage.getItem("purchase_tracked")) {
+<head>
+    <meta charset="UTF-8" />
+    <title>Payment Successful</title>
 
-        gtag('event', 'purchase', {
-            value: 12.9,
-            currency: 'USD'
-        });
+    <!-- ✅ GA基础代码（必须加） -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7PWR77XD5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-P7PWR77XD5');
+    </script>
+</head>
 
-        localStorage.setItem("purchase_tracked", "true");
-    }
-</script>
+<body>
+
+    <h1>Payment Successful 🎉</h1>
+    <p>Thank you for upgrading to Pro.</p>
+    <p>You now have unlimited resume generation.</p>
+
+    <button onclick="window.location.href='/'">
+        Go back to Resume Builder
+    </button>
+
+    <script>
+        // ✅ 防重复 + 发送 purchase
+        if (!localStorage.getItem("purchase_tracked")) {
+            gtag('event', 'purchase', {
+                value: 12.9,
+                currency: 'USD'
+            });
+
+            localStorage.setItem("purchase_tracked", "true");
+        }
+    </script>
+
+</body>
+
+</html>

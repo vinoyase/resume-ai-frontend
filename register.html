@@ -7,6 +7,14 @@
     <title>Create account - SmartResume AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7PWR77XD5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-P7PWR77XD5');
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -427,7 +435,7 @@
                 const data = await res.json();
 
                 if (res.ok && data.success) {
-                    
+
                     // ✅ GA注册埋点（关键）
                     gtag('event', 'sign_up', {
                         method: 'email'
