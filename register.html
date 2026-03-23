@@ -427,6 +427,11 @@
                 const data = await res.json();
 
                 if (res.ok && data.success) {
+                    
+                    // ✅ GA注册埋点（关键）
+                    gtag('event', 'sign_up', {
+                        method: 'email'
+                    });
                     showMsg("Registered successfully", "success");
 
                     setTimeout(() => {

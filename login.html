@@ -306,6 +306,12 @@
 
                 // 如果登录成功
                 if (res.ok) {
+
+                    // ✅ GA登录埋点
+                    gtag('event', 'login', {
+                        method: 'email'
+                    });
+                    
                     // 保存 token 到 localStorage
                     localStorage.setItem("token", data.token);
 

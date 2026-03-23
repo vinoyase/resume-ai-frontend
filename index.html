@@ -1079,7 +1079,12 @@
         }
 
         function goToUpgrade() {
+
+            // ✅ 点击升级埋点
+            gtag('event', 'begin_checkout');
+
             window.location.href = "upgrade.html";
+
         }
 
         const avatarBtn = document.getElementById("avatarBtn");

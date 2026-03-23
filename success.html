@@ -3,5 +3,16 @@
 <p>You now have unlimited resume generation.</p>
 
 <button onclick="window.location.href='/'">
-Go back to Resume Builder
+    Go back to Resume Builder
 </button>
+<script>
+    if (!localStorage.getItem("purchase_tracked")) {
+
+        gtag('event', 'purchase', {
+            value: 12.9,
+            currency: 'USD'
+        });
+
+        localStorage.setItem("purchase_tracked", "true");
+    }
+</script>
